@@ -1,0 +1,415 @@
+<table>
+<tr>
+    <td></td>
+    <td></td>
+    <td>RENCANA KERJA DAN ANGGARAN DESA</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td>PEMERINTAH DESA JENGGOLO</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td>KABUPATEN MALANG</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td>TAHUN ANGGARAN 2014</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td> Kewenangan</td>
+    <td></td>
+    <td></td>
+    <td>:</td>
+    <td>1</td>
+    <td></td>
+    <td>Kewenangan berdasarkan hak asal-usul</td>
+    <td></td>
+</tr>
+<tr>
+    <td> Bidang Kewenangan</td>
+    <td></td>
+    <td></td>
+    <td>:</td>
+    <td>1 . 1</td>
+    <td></td>
+    <td>Penyelenggaraan Pemerintahan Desa</td>
+    <td></td>
+</tr>
+<tr>
+    <td> Kecamatan</td>
+    <td></td>
+    <td></td>
+    <td>:</td>
+    <td>07 . 13</td>
+    <td></td>
+    <td>Kecamatan Kepanjen</td>
+    <td></td>
+</tr>
+<tr>
+    <td> Organisasi</td>
+    <td></td>
+    <td></td>
+    <td>:</td>
+    <td>07 . 13 . 2010</td>
+    <td></td>
+    <td>Desa Jenggolo</td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>RINGKASAN ANGGARAN PENDAPATAN DAN BELANJA DESA</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>Kode Rekening</td>
+    <td></td>
+    <td>Uraian</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Jumlah</td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>1</td>
+    <td></td>
+    <td>2</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>6=(3x5)</td>
+</tr>
+<tr>
+    <td></td>
+    <td>1.</td>
+    <td> PENDAPATAN</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td> 25,500,000.00 </td>
+</tr>
+<tr>
+    <td></td>
+    <td>1.1</td>
+    <td> Pendapatan Asli Desa</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td> 7,500,000.00 </td>
+</tr>
+<tr>
+    <td></td>
+    <td>1.3</td>
+    <td> Bagian Hasil Pajak dan Retribusi Daerah</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td> 18,000,000.00 </td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td>2.</td>
+    <td> BELANJA</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td> 20,560,000.00 </td>
+</tr>
+<tr>
+    <td></td>
+    <td>2.1</td>
+    <td> Belanja Langsung</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td> 18,000,000.00 </td>
+</tr>
+<tr>
+    <td></td>
+    <td>2.2.</td>
+    <td> Belanja Tidak Langsung</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td> 2,560,000.00 </td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Jumlah Keseluruhan APBDesa</td>
+    <td> 46,060,000.00 </td>
+</tr>
+<tr>
+    <td> Keterangan  :</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td> -  Tanggal Pembahasan</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td> -  Catatan hasil pembahasan</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td> Dibahas dan ditandatangani dalam Musyawarah Desa oleh :</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td>No.</td>
+    <td>Nama Lengkap</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
+    <td></td>
+</tr>
+</table>
