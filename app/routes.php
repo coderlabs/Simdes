@@ -145,8 +145,8 @@ Route::group(['namespace' => 'Pejabat', 'before' => ['auth', 'admin']], function
 });
 
 # Namespace Pengaturan
-Route::group(['namespace' => 'Pengaturan', 'before' => ['auth', 'admin']], function () {
-    Route::resource('organisasi', 'OrganisasiController');
+Route::group(['namespace' => 'Organisasi', 'before' => ['auth', 'backoffice.admin']], function () {
+    Route::resource('organisasi', 'OrganisasiController', ['only' => ['index', 'show', 'update', 'edit']]);
 });
 
 # Namespace MasterData
