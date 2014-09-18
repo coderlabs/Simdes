@@ -4,6 +4,7 @@
 @stop
 @section('content')
 <section class="wrapper">
+
 	<div class="row">
 		<div class="col-md-12">
             <div class="alert alert-block alert-danger fade in " id="alert-notify" style="display:none">
@@ -45,6 +46,7 @@
 			</section>
 		</div>
 	</div>
+
 </section>
 @stop
 @section('scripts')
