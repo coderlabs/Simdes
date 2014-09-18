@@ -50,10 +50,21 @@
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
-                <li><a href="{{URL::route('profile')}}"><i class=" fa fa-suitcase"></i>Profil</a>
+                @if(Auth::user()->is_admin == 100)
+                <li>
+                    <a href="{{URL::to('organisasi')}}"><i class=" fa fa-home"></i>Organisasi</a>
                 </li>
-                <li><a href="{{ URL::route("ganti.password") }}"><i class="fa fa-cog"></i> Settings</a></li>
-                <li><a href="{{ URL::route("auth.logout") }}"><i class="fa fa-key"></i> Log Out</a></li>
+                @endif
+                <li>
+                    <a href="{{URL::route('profile')}}"><i class=" fa fa-user"></i>Profil</a>
+                </li>
+
+                <li>
+                    <a href="{{ URL::route("ganti.password") }}"><i class="fa fa-cog"></i> Settings</a>
+                </li>
+                <li>
+                    <a href="{{ URL::route("auth.logout") }}"><i class="fa fa-key"></i> Log Out</a>
+                </li>
             </ul>
         </li>
     </ul>
