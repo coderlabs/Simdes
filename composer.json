@@ -9,9 +9,7 @@
         "maatwebsite/excel": "dev-master",
         "anouar/fpdf": "dev-master",
         "barryvdh/laravel-migration-generator": "dev-master",
-        "barryvdh/laravel-debugbar": "1.*",
-        "intervention/image": "2.*"
-
+        "barryvdh/laravel-debugbar": "1.*"
 	},
 	"autoload": {
 		"classmap": [
