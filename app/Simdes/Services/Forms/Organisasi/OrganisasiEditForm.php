@@ -11,9 +11,16 @@ namespace Simdes\Services\Forms\Organisasi;
 
 use Simdes\Services\Forms\AbstractForm;
 
+/**
+ * Class OrganisasiEditForm
+ * @package Simdes\Services\Forms\Organisasi
+ */
 class OrganisasiEditForm extends AbstractForm
 {
 
+    /**
+     * @var array
+     */
     protected $rules = [
         'nama'      => 'required',
         'alamat'    => 'required',

@@ -11,6 +11,10 @@ namespace Simdes\Services\Forms\Organisasi;
 
 use Simdes\Services\Forms\AbstractForm;
 
+/**
+ * Class OrganisasiForm
+ * @package Simdes\Services\Forms\Organisasi
+ */
 class OrganisasiForm extends AbstractForm
 {
 
@@ -18,6 +22,9 @@ class OrganisasiForm extends AbstractForm
     // dan email adalah nama dan email organisasi
     // user tipe ini adalah user administrator
 
+    /**
+     * @var array
+     */
     protected $rules = [
         'nama'  => 'required|max:255',
         'email' => 'required|unique:organisasi,email'
