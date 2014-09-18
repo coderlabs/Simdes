@@ -65,13 +65,6 @@
         </div>
         @yield('content')
 
-        @if(Auth::user()->is_organisasi == 0)
-        <div class="alert alert-block alert-danger fade in " id="alert-notify">
-            <button data-dismiss="alert" class="close close-sm fa fa-times" type="button"></button>
-            <strong>Warning!</strong> Silahkan untuk input data <a href="{{URL::to('organisasi')}}">Data Umum</a>
-            Terlebih dahulu!
-        </div>
-        @endif
     </section>
     <!--main content end-->
 </section>
