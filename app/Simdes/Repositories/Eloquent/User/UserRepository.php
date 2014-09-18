@@ -100,7 +100,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 
             // filter berdasarkan $kab_id ini implemetasi untuk
             // pelatihan @todo : bisa jadi untuk nasional
-            ->where('kab_id', '=', $kab_id)
+//            ->where('kab_id', '=', $kab_id)
             ->with('organisasi')
 
             // order by id user terakhir mendaftar
