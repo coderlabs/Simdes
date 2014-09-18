@@ -11,9 +11,16 @@ namespace Profile;
 
 use Simdes\Repositories\User\UserRepositoryInterface;
 
+/**
+ * Class ProfileController
+ * @package Profile
+ */
 class ProfileController extends \BaseController
 {
 
+    /**
+     * @param UserRepositoryInterface $auth
+     */
     public function __construct(
         UserRepositoryInterface $auth
     )
@@ -23,18 +30,64 @@ class ProfileController extends \BaseController
         $this->auth = $auth;
     }
 
+    /**
+     *
+     */
     public function index()
     {
         $data = $this->auth->findByOrganisasiId($this->auth->getOrganisasiId(), $this->auth->getUserId());
+        //  1 -> administrator
+        //  2 -> kepala desa
+        //  3 -> sekretaris
+        //  4 -> bendahara
+        //  5 -> bendahara
+        //  6 -> bendahara
+        //  100 -> BackOffice Kab
+        //  200 -> BackOffice Kec
+        //  300 -> BackOffice Prov
+        //  400 -> BackOffice Pusat
+        $level_admin = "";
+        switch ($level = $data->is_admin) {
+            case 1 :
+                $level_admin = 'Administrator';
+                break;
+            case 2 :
+                $level_admin = 'Administrator';
+                break;
+            case 3 :
+                $level_admin = 'Administrator';
+                break;
+            case 4 :
+                $level_admin = 'Administrator';
+                break;
+            case 5 :
+                $level_admin = 'Administrator';
+                break;
+            case 6 :
+                $level_admin = 'Administrator';
+                break;
+            case 100 :
+                $level_admin = 'Administrator Kabupaten';
+                break;
+            default :
+                $level_admin = 'Guest';
+        }
+        $data['admin'] = $level_admin;
 
         $this->view('user.profile', ['data' => $data]);
     }
 
+    /**
+     *
+     */
     public function passwordIndex()
     {
         $this->view('user.password');
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update()
     {
         $user = $this->auth->findByOrganisasiId($this->auth->getOrganisasiId(), $this->auth->getUserId());
@@ -73,6 +126,9 @@ class ProfileController extends \BaseController
         return $this->redirectBack(['success_message' => true]);
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postGantiPassword()
     {
         $user = $this->auth->findByOrganisasiId($this->auth->getOrganisasiId(), $this->auth->getUserId());
