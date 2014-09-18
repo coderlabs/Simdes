@@ -98,7 +98,7 @@ function resultData(data) {
                 "<td class='col-md-2'>" + status + "</td>" +
                 "</td><td class='col-md-1'>" + level +
                 "<td class='col-md-2'>" + val.organisasi.nama + "</td>" +
-                "<td class='col-md-'><div class='btn-toolbar'>" +
+                "<td class='col-md-3'><div class='btn-toolbar'>" +
                 demo + active +
                 "</div>" +
                 "</td></tr>"
