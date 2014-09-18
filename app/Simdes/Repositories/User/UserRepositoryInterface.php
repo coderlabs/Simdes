@@ -35,11 +35,34 @@ interface UserRepositoryInterface
      * @param $term
      * @return mixed
      */
-    public function getAllUser($term);
+    public function getAllUser($term,$kab_id);
 
+    /**
+     * Set User sebagai Demo ini digunakan untuk pemblokiran
+     * Jika trafik aplikasi besar, dan hanya digunakan
+     * oleh user yang sedang menjalani pelatihan
+     *
+     * @param User $user
+     * @return mixed
+     */
     public function setDemo(User $user);
+
+    /**
+     * @param User $user
+     * @return mixed
+     */
     public function unsetDemo(User $user);
+
+    /**
+     * @param User $user
+     * @return mixed
+     */
     public function setActive(User $user);
+
+    /**
+     * @param User $user
+     * @return mixed
+     */
     public function unsetActive(User $user);
 
     /**
@@ -113,6 +136,11 @@ interface UserRepositoryInterface
      * @return mixed
      */
     public function getOrganisasiId();
+
+    /**
+     * @return mixed
+     */
+    public function getKabIdByOrganisasiId();
 
     /**
      * Untuk cek apakah sudah memiliki pejabat

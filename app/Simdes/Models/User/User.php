@@ -126,6 +126,6 @@ class User extends Model implements UserInterface, RemindableInterface
     }
 
     public function scopeFullTextSearch($query,$q) {
-        return empty($q) ? $query : $query->whereRaw("MATCH(name,email,organisasi)AGAINST(? IN BOOLEAN MODE)",[$q]);
+        return empty($q) ? $query : $query->whereRaw("MATCH(name,email,desa)AGAINST(? IN BOOLEAN MODE)",[$q]);
     }
 }

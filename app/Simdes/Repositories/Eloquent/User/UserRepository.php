@@ -88,15 +88,31 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
      * @param $term
      * @return mixed
      */
-    public function getAllUser($term)
+    public function getAllUser($term, $kab_id)
     {
         return $this->model
+            // penerapan pencarian dengan teknik Full Text Search
             ->FullTextSearch($term)
+
+            // get list user kecuali user dengan tipe is_admin = 100
+            // ini adalah admin tingkat kabupaten
+            ->where('is_admin', '!=', 100)
+
+            // filter berdasarkan $kab_id ini implemetasi untuk
+            // pelatihan @todo : bisa jadi untuk nasional
+            ->where('kab_id', '=', $kab_id)
             ->with('organisasi')
-            ->remember(2)
+
+            // order by id user terakhir mendaftar
+            ->orderBy('id', 'desc')
+
             ->paginate(10);
     }
 
+    /**
+     * @param User $user
+     * @return User
+     */
     public function setDemo(User $user)
     {
         // jadikan akun ini demo, diaktifkann oleh bakcoffice
@@ -106,6 +122,10 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 
     }
 
+    /**
+     * @param User $user
+     * @return User
+     */
     public function unsetDemo(User $user)
     {
         // jadikan akun tidak demo, akun bisa digunakan
@@ -114,6 +134,10 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         return $user;
     }
 
+    /**
+     * @param User $user
+     * @return User
+     */
     public function setActive(User $user)
     {
         // jadikan akun active
@@ -122,6 +146,10 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         return $user;
     }
 
+    /**
+     * @param User $user
+     * @return User
+     */
     public function unsetActive(User $user)
     {
         // jadikan akun not active
@@ -140,11 +168,13 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
      */
     public function create(array $data)
     {
+        // instance model
         $user = $this->getNew();
 
+        // set param email
         $user->email = e($data['email']);
 
-        // is_admin = 1 akun tipe administrator
+        // set default is_admin = 1 akun tipe administrator
         $user->is_admin = 1;
 
         // is_active = 1 berarti akun belum aktif, harus diaktifkan dengan membuka email notifikasi
@@ -153,20 +183,17 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 
         // is_demo = 0 berarti akun aktif, is_demo hanya bisa diaktifkan oleh backoffice
         $user->is_demo = 0;
+
+        // siapkan input nama
         $user->name = e(ucwords(strtolower($data['name'])));
 
+        // siapkan input password yang di hash
         $user->password = Hash::make($data['password']);
 
         // activation code adalah code generate dari str_random(60)
         // kode ini berfungsi untuk mengaktifkan akun melalui
         // email, jika link/url diklick dan akun akan aktif
         $user->activation_code = str_random(60);
-
-        // siapkan data random untuk administrator pertama kali
-        // daftar yaitu gabungan dari string random dan nama
-        // yang kemudian akan diinput ke slug ditabel users
-        $random = str_random(3);
-        $user->slug = Str::slug(strtolower($data['name'] . $random), '-');
 
         $user->save();
 
@@ -179,7 +206,8 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         // create organisasi return berupa organisasi_id
         $organisasi_id = $this->organisasi->create($data);
 
-        // siapkan data
+        // siapkan data berupa organisasi_id yang didapat dari
+        // hasil return setelah input_organisasi
         $up_user = $this->findById($user->id);
         $data_up['organisasi_id'] = $organisasi_id;
 
@@ -187,9 +215,10 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         $this->updateUser($up_user, $data_up);
 
         // siapkan organsiasi_id untuk diinputkan ke pejabat
+        // yang akan diumpankan ke event listen user.signup
         $user['organisasi_id'] = $organisasi_id;
 
-        // event listen untuk mengirimkan email
+        // event listen untuk mengirimkan email dengan data $user
         $this->event->fire('user.signup', $user);
 
         return $user;
@@ -319,6 +348,14 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     }
 
     /**
+     * @return mixed
+     */
+    public function getKabIdByOrganisasiId()
+    {
+        return $this->auth->user()->organisasi->kode_kab;
+    }
+
+    /**
      * @param User $user
      * @param array $data
      * @return User
@@ -423,7 +460,12 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
      */
     public function findByOrganisasiId($organisasi_id, $user_id)
     {
-        return $this->model->where('id', '=', $user_id)->where('organisasi_id', '=', $organisasi_id)->first();
+        return $this->model
+            ->where('id', '=', $user_id)
+            ->where('organisasi_id', '=', $organisasi_id)
+            ->with('organisasi')
+            ->remember(10)
+            ->first();
     }
 
     /**
