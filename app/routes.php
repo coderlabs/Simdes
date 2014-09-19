@@ -466,16 +466,16 @@ Route::group(['namespace' => 'BackOffice', 'before' => ['auth', 'backoffice']], 
 // dilakukan oleh user, sebagai IT/Sistim support sistem/pnegelola sistem
 
     // menampilkan list organisasi
-    Route::get('data-list-organisasi', 'OrganisasiListController@index');
-    Route::post('data-list-organisasi', 'OrganisasiListController@read');
+    Route::get('backoffice/data-list-organisasi', 'OrganisasiListController@index');
+    Route::post('backoffice/data-list-organisasi/read', 'OrganisasiListController@read');
 
     // menampilkan list user
-    Route::get('data-list-user', 'UserListController@index');
-    Route::post('data-list-user/read', 'UserListController@read');
-    Route::post('set-demo-user', 'UserListController@setDemo');
-    Route::post('unset-demo-user', 'UserListController@unsetDemo');
-    Route::post('set-active-user', 'UserListController@setActive');
-    Route::post('unset-active-user', 'UserListController@unsetActive');
+    Route::get('backoffice/data-list-user', 'UserListController@index');
+    Route::post('backoffice/data-list-user/read', 'UserListController@read');
+    Route::post('backoffice/set-demo-user', 'UserListController@setDemo');
+    Route::post('backoffice/unset-demo-user', 'UserListController@unsetDemo');
+    Route::post('backoffice/set-active-user', 'UserListController@setActive');
+    Route::post('backoffice/unset-active-user', 'UserListController@unsetActive');
 });
 
 Route::get('xls-importer', function () {
