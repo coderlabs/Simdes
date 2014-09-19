@@ -54,4 +54,10 @@ class Organisasi extends Model
         return $this->belongsTo('Simdes\Models\Pejabat\PejabatDesa', 'organisasi_id');
     }
 
+    public function scopeFullTextSearch($query, $q)
+    {
+        return empty($q) ? $query : $query->whereRaw("MATCH(desa,email)AGAINST(? IN BOOLEAN MODE)", [$q]);
+    }
+
+
 }

@@ -12,7 +12,6 @@ use Simdes\Models\Organisasi\Organisasi;
 use Simdes\Models\User\User;
 use Simdes\Repositories\Eloquent\AbstractRepository;
 use Simdes\Repositories\Organisasi\OrganisasiRepositoryInterface;
-use Simdes\Repositories\User\UserRepositoryInterface;
 use Simdes\Services\Forms\Organisasi\OrganisasiEditForm;
 use Simdes\Services\Forms\Organisasi\OrganisasiForm;
 
@@ -138,13 +137,15 @@ class OrganisasiRepository extends AbstractRepository implements OrganisasiRepos
         return $data->desa;
     }
 
-    /**
-     * @param $term
-     * @param $kab_id
-     */
     public function getListByKabId($term, $kab_id)
     {
-
+        return $this->model
+            ->where('kode_kab','=',$kab_id)
+            ->FullTextSearch($term)
+            ->where('organisasi_type','!=','backoffice')
+            ->orderby('id','desc')
+            ->remember(10)
+            ->paginate(10,['id','desa','email','kab','is_active']);
     }
 
 }

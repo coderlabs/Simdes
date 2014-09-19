@@ -16,7 +16,7 @@ use Simdes\Repositories\User\UserRepositoryInterface;
  * Class OrganisasiController
  * @package Organisasi
  */
-class OrganisasiController extends \BaseController
+class OrganisasiListController extends \BaseController
 {
     /**
      * @var OrganisasiRepositoryInterface
@@ -38,25 +38,22 @@ class OrganisasiController extends \BaseController
 
 
     /**
-     * @param null $term
-     * @return \View
+     *
      */
-    public function index($term = null)
+    public function index()
     {
-        $data = $this->organisasi->getListByKabId($term,$this->auth->getKabIdByOrganisasiId());
+        $data = $this->organisasi->getListByKabId($term = null, $this->auth->getKabIdByOrganisasiId());
 
-        $this->view('organisasi.data-list-organisasi',['data' => $data]);
+        $this->view('organisasi.data-list-organisasi', ['data' => $data]);
     }
 
     /**
-     * Get list organisasi via ajax call
-     *
-     * @param $term
      * @return mixed
      */
-    public function read($term)
+    public function read()
     {
-        return $this->organisasi->getListByKabId($term,$this->auth->getKabIdByOrganisasiId());
+        $term = $this->input('term');
+        return $this->organisasi->getListByKabId($term, $this->auth->getKabIdByOrganisasiId());
     }
 
     /**
