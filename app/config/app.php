@@ -117,6 +117,8 @@ return array(
         'Barryvdh\Debugbar\ServiceProvider',
         // xls import dan export
         'Maatwebsite\Excel\ExcelServiceProvider',
+        //image processor by intervention
+        'Intervention\Image\ImageServiceProvider'
 
     ),
 
@@ -188,6 +190,8 @@ return array(
         'PDF'         => 'Barryvdh\DomPDF\Facade',
         // xls driver export import
         'Excel'       => 'Maatwebsite\Excel\Facades\Excel',
+        // image prosessor by intervention
+        'Image'       => 'Intervention\Image\Facades\Image'
 
     ),
 
