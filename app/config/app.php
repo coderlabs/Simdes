@@ -109,6 +109,7 @@ return array(
 
         // core simdes app
         'Simdes\Providers\RepositoryServiceProvider',
+        'Simdes\Providers\UploadServiceProvider',
         // pdf driver by dompdf
         'Barryvdh\DomPDF\ServiceProvider',
         // migration generator
@@ -118,7 +119,9 @@ return array(
         // xls import dan export
         'Maatwebsite\Excel\ExcelServiceProvider',
         //image processor by intervention
-        'Intervention\Image\ImageServiceProvider'
+        'Intervention\Image\ImageServiceProvider',
+        // laravel auto presenter by Shawn McCool
+        'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
 
     ),
 

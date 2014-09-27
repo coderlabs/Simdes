@@ -28,13 +28,18 @@ class User extends Model implements UserInterface, RemindableInterface
     /**
      * @var array
      */
-    protected $hidden = ['password', 'remember_token','activation_code'];
+    protected $hidden = ['password', 'remember_token', 'activation_code'];
+
+    /**
+     * @var array
+     */
+    protected $with = ['organisasi'];
 
     /**
      * @var array
      */
     protected $attributes = [
-        'admin' => true
+        'is_admin' => true
     ];
 
     /**
@@ -125,7 +130,13 @@ class User extends Model implements UserInterface, RemindableInterface
         return $query->whereSlug($slug);
     }
 
-    public function scopeFullTextSearch($query,$q) {
-        return empty($q) ? $query : $query->whereRaw("MATCH(name,email,desa)AGAINST(? IN BOOLEAN MODE)",[$q]);
+    /**
+     * @param $query
+     * @param $q
+     * @return mixed
+     */
+    public function scopeFullTextSearch($query, $q)
+    {
+        return empty($q) ? $query : $query->whereRaw("MATCH(name,email,desa)AGAINST(? IN BOOLEAN MODE)", [$q]);
     }
 }

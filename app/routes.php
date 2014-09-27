@@ -32,22 +32,6 @@ Route::get('landing-page', function () {
     return View::make('landing.landing');
 })->before('auth');
 
-// checking password ketika akan ganti email, password di
-// namespace Profile, output berupa string false/true
-Route::post('cek-password', function ($email, $password) {
-    $credentials = [
-        "email"    => Input::get('email'),
-        "password" => Input::get('email')
-    ];
-
-    if (Auth::attempt($credentials, false)) {
-        return 'true';
-    }
-
-    return 'false';
-})->before('auth');
-
-
 Route::get('/', function () {
     // menampilkan halaman utama, berisi dokumentasi dari program simdes
     return View::make('pages.login');
@@ -105,8 +89,8 @@ Route::group(['before' => 'auth', 'namespace' => 'Profile'], function () {
     Route::post('profile-update', ['before' => 'auth', 'as' => 'profile.update', 'uses' => 'ProfileController@update']);
 
     // menampilkan halaman ganti password
-    Route::get('ganti-password', ['before' => 'auth', 'as' => 'ganti.password', 'uses' => 'ProfileController@passwordIndex']);
-    Route::post('post-ganti-password', ['before' => 'auth', 'as' => 'post.ganti.password', 'uses' => 'ProfileController@postGantiPassword']);
+    Route::get('profile/ganti-password', ['before' => 'auth', 'as' => 'ganti.password', 'uses' => 'ProfileController@passwordIndex']);
+    Route::post('profile/post-ganti-password', ['before' => 'auth', 'as' => 'post.ganti.password', 'uses' => 'ProfileController@postGantiPassword']);
 });
 
 
@@ -482,3 +466,20 @@ Route::get('xls-importer', function () {
     return $exel = Excel::load('xls/data.xlsx')->toArray();
 
 })->before('auth');
+
+Route::get('upload/create', function () {
+    return View::make('upload');
+})->before('auth');
+
+// usage inside a laravel route
+Route::post('/upload/image', function () {
+
+    $name_random = str_random(60);
+    $temp_path = '/storage/upload/avatar/';
+    $destinationPath = 'upload/avatar/';
+    $img_temp = Input::file('image')->move(__DIR__ . $temp_path . $name_random . '.jpg');
+
+    Image::make($img_temp)->save('upload/avatar/' . $name_random . '.jpg');
+
+    return Response::json(['success' => true, 'file' => asset($destinationPath . $name_random . '.jpg')]);
+});

@@ -1,20 +1,11 @@
 <!--logo start-->
 <div class="brand">
     <div class="brand">
-        @if(1 == Config::get('app.debug'))
         <img class="pull-left" src="{{ URL::asset('img/logo_organisasi.png') }}" alt="" height="60"
              style="margin-left: 20px; margin-top: 10px;">
-        @else
-        <img class="pull-left" src="http://cdn.simdes-bbpmd.com/img/logo_organisasi.png" alt="" height="60"
-             style="margin-left: 20px; margin-top: 10px;">
-        @endif
 
         <a href="{{ URL::to('/') }}" class="logo">
-            @if(1 == Config::get('app.debug'))
             <img src="{{ URL::asset('images/logo_simdes.png') }}" alt="">
-            @else
-            <img src="http://cdn.simdes-bbpmd.com/images/logo_simdes.png" alt="">
-            @endif
         </a>
 
         <ul class="nav pull-left top-menu">
@@ -36,17 +27,8 @@
         <!-- user login dropdown start-->
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                @if(1 == Config::get('app.debug'))
-                <img alt="" src="{{ URL::asset('images/avatar1_small.jpg') }}">
-                @else
-                <img alt="" src="http://cdn.simdes-bbpmd.com/images/avatar1_small.jpg" >
-                @endif
-
-                @if(Auth::check())
+                <img alt="" src="{{asset('images/bust.png')}}">
                 <span class="username"> {{ Auth::user()->name}}</span>
-                @else
-                <span class="username">Not Logged!</span>
-                @endif
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">

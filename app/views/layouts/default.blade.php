@@ -12,15 +12,10 @@
     <meta property="og:description" content="" />
     <meta name="description" content="Sistem Informasi dan Managemen Keuangan Desa | Simdes | BBPMD Malang">
     <meta name="author" content="Edi Santoso, edicyber@gmail.com, @cyberid41">
-    @if(1 == Config::get('app.debug'))
     <link rel="shortcut icon" href="{{ URL::asset('images/logo_simdes.png') }}">
-    @else
-    <link href="http://cdn.simdes-bbpmd.com/images/logo_simdes.png" rel="shortcut icon">
-    @endif
     <title>@yield('title') | Simdes</title>
 
-    {{--cdn untuk online--}}
-    @if(1 == Config::get('app.debug'))
+    {{--required style for all pages--}}
     {{ HTML::style('bs3/css/bootstrap.min.css') }}
     {{ HTML::style('css/bootstrap-reset.css') }}
     {{ HTML::style('assets/font-awesome/css/font-awesome.css') }}
@@ -28,17 +23,6 @@
     {{ HTML::style('css/style-responsive.css') }}
     {{ HTML::style('css/table-responsive.css') }}
     {{ HTML::style('css/refreshing.css') }}
-
-    @else
-    <link href="http://cdn.simdes-bbpmd.com/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="http://cdn.simdes-bbpmd.com/css/bootstrap-reset.css" rel="stylesheet" type="text/css" media="all" />
-    {{ HTML::style('assets/font-awesome/css/font-awesome.css') }}
-    <link href="http://cdn.simdes-bbpmd.com/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="http://cdn.simdes-bbpmd.com/css/style-responsive.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="http://cdn.simdes-bbpmd.com/css/table-responsive.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="http://cdn.simdes-bbpmd.com/css/refreshing.css" rel="stylesheet" type="text/css" media="all" />
-    @endif
-
     @yield('style')
 </head>
 <body>
@@ -64,14 +48,11 @@
             </div>
         </div>
         @yield('content')
-
     </section>
     <!--main content end-->
 </section>
 <!--container end-->
 
-{{-- Deteksi jika debug true maka akan memakai local resource--}}
-@if(1 == Config::get('app.debug'))
 {{ HTML::script('js/lib/jquery.js') }}
 {{ HTML::script('bs3/js/bootstrap.min.js') }}
 {{ HTML::script('js/accordion-menu/jquery.dcjqaccordion.2.7.js') }}
@@ -80,16 +61,6 @@
 {{ HTML::script('js/scripts.js') }}
 {{ HTML::script('js/jquery.number.min.js') }}
 {{ HTML::script('js/jquery-validate/jquery.validate.min.js') }}
-@else
-<script type="text/javascript" src="http://cdn.simdes-bbpmd.com/js/jquery.js"></script>
-<script type="text/javascript" src="http://cdn.simdes-bbpmd.com/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://cdn.simdes-bbpmd.com/js/jquery.dcjqaccordion.2.7.js"></script>
-<script type="text/javascript" src="http://cdn.simdes-bbpmd.com/js/jquery.scrollTo.min.js"></script>
-<script type="text/javascript" src="http://cdn.simdes-bbpmd.com/js/jquery.nicescroll.js"></script>
-<script type="text/javascript" src="http://cdn.simdes-bbpmd.com/js/scripts.js"></script>
-<script type="text/javascript" src="http://cdn.simdes-bbpmd.com/js/jquery.number.min.js"></script>
-<script type="text/javascript" src="http://cdn.simdes-bbpmd.com/js/jquery.validate.min.js"></script>
-@endif
 
 @yield('scripts')
 </body>

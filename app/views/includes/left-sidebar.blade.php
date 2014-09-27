@@ -103,8 +103,8 @@
             <span>Master Data</span>
         </a>
         <ul class="sub" id="li-master">
-            <li id="list-organisasi"><a href="{{ URL::to('data-list-organisasi') }}">List Organisasi</a></li>
-            <li id="list-user"><a href="{{ URL::to('data-list-user') }}">List User</a></li>
+            <li id="list-organisasi"><a href="{{ URL::to('backoffice/data-list-organisasi') }}">List Organisasi</a></li>
+            <li id="list-user"><a href="{{ URL::to('backoffice/data-list-user') }}">List User</a></li>
             <li id="menu-prov"><a href="{{ URL::to('master-provinsi') }}">Provinsi</a></li>
             <li id="menu-kab"><a href="{{ URL::to('master-kabupaten') }}">Kabupaten</a></li>
             <li id="menu-ssh"><a href="{{ URL::to('data-kelas-barang') }}">Standar Satuan Harga</a></li>
@@ -141,8 +141,6 @@
             <li><a href="#">Organisasi</a></li>
             <li id="menu-pejabat-desa"><a href="{{ URL::to('tim-anggaran') }}">Tim Anggaran</a></li>
             <li id="menu-user"><a href="{{ URL::to('data-user') }}">Managemen User</a></li>
-
-            {{--<li id="menu-user-log"><a href="{{ URL::to('user-log') }}">Aktifitas User</a></li>--}}
         </ul>
     </li>
     @endif

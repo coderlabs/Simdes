@@ -137,6 +137,13 @@ class OrganisasiRepository extends AbstractRepository implements OrganisasiRepos
         return $data->desa;
     }
 
+    /**
+     * Get list organisasi by kab_id
+     *
+     * @param $term
+     * @param $kab_id
+     * @return mixed
+     */
     public function getListByKabId($term, $kab_id)
     {
         return $this->model

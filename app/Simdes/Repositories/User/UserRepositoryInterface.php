@@ -27,7 +27,7 @@ interface UserRepositoryInterface
      *
      * @return mixed
      */
-    public function findAll($term, $organisasi_id);
+    public function getByOrganisasiId($term, $organisasi_id);
 
     /**
      * Diakses oleh user dengan tipe backoffice
@@ -35,7 +35,7 @@ interface UserRepositoryInterface
      * @param $term
      * @return mixed
      */
-    public function getAllUser($term,$kab_id);
+    public function getAllUser($term);
 
     /**
      * Set User sebagai Demo ini digunakan untuk pemblokiran

@@ -84,11 +84,11 @@
 @stop
 @section('scripts')
 <script>
-    var url = "{{URL::to('data-list-user')}}";
-    var url_set_demo = "{{URL::to('set-demo-user')}}";
-    var url_unset_demo = "{{URL::to('unset-demo-user')}}";
-    var url_set_active = "{{URL::to('set-active-user')}}";
-    var url_unset_active = "{{URL::to('unset-active-user')}}";
+    var url = "{{URL::to('backoffice/data-list-user')}}";
+    var url_set_demo = "{{URL::to('backoffice/set-demo-user')}}";
+    var url_unset_demo = "{{URL::to('backoffice/unset-demo-user')}}";
+    var url_set_active = "{{URL::to('backoffice/set-active-user')}}";
+    var url_unset_active = "{{URL::to('backoffice/unset-active-user')}}";
 
 </script>
 {{ HTML::script('app/backoffice/data-list-user.js') }}

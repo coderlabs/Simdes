@@ -44,7 +44,7 @@ class UserListController extends \BaseController
      */
     public function read()
     {
-        return $this->user->getAllUser($this->input('term'),$this->user->getKabIdByOrganisasiId());
+        return $this->user->getAllUser($this->input('term'));
     }
 
     /**

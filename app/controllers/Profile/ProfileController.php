@@ -9,6 +9,7 @@
 namespace Profile;
 
 
+use Simdes\Facades\ImageUpload;
 use Simdes\Repositories\User\UserRepositoryInterface;
 
 /**
@@ -35,46 +36,7 @@ class ProfileController extends \BaseController
      */
     public function index()
     {
-        $data = $this->auth->findByOrganisasiId($this->auth->getOrganisasiId(), $this->auth->getUserId());
-        //  1 -> administrator
-        //  2 -> kepala desa
-        //  3 -> sekretaris
-        //  4 -> bendahara
-        //  5 -> bendahara
-        //  6 -> bendahara
-        //  100 -> BackOffice Kab
-        //  200 -> BackOffice Kec
-        //  300 -> BackOffice Prov
-        //  400 -> BackOffice Pusat
-        $level_admin = "";
-        switch ($level = $data->is_admin) {
-            case 1 :
-                $level_admin = 'Administrator';
-                break;
-            case 2 :
-                $level_admin = 'Administrator';
-                break;
-            case 3 :
-                $level_admin = 'Administrator';
-                break;
-            case 4 :
-                $level_admin = 'Administrator';
-                break;
-            case 5 :
-                $level_admin = 'Administrator';
-                break;
-            case 6 :
-                $level_admin = 'Administrator';
-                break;
-            case 100 :
-                $level_admin = 'Administrator Kabupaten';
-                break;
-            default :
-                $level_admin = 'Guest';
-        }
-        $data['admin'] = $level_admin;
-
-        $this->view('user.profile', ['data' => $data]);
+        $this->view('user.profile');
     }
 
     /**
@@ -168,6 +130,25 @@ class ProfileController extends \BaseController
             'message' => 'Sukses : Password berhasil di ubah, password anda saat ini : <b>' .
                 \Input::get('password_baru') . '</b> gunakan untuk login.'
         ]);
+    }
+
+    public function postAvatar()
+    {
+        if (isset($_SERVER['HTTP_ORIGIN'])) {
+            ImageUpload::enableCORS($_SERVER['HTTP_ORIGIN']);
+        }
+
+        if (Request::server('REQUEST_METHOD') == 'OPTIONS') {
+            exit;
+        }
+
+        $json = ImageUpload::handle(Input::file('filedata'));
+
+        if ($json !== false) {
+            return Response::json($json, 200);
+        }
+
+        return Response::json('error', 400);
     }
 
 

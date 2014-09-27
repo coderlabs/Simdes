@@ -16,7 +16,6 @@ use Illuminate\Support\Str;
 use Simdes\Models\User\User;
 use Simdes\Repositories\Eloquent\AbstractRepository;
 use Simdes\Repositories\Organisasi\OrganisasiRepositoryInterface;
-use Simdes\Repositories\Pejabat\PejabatDesaRepositoryInterface;
 use Simdes\Repositories\User\UserRepositoryInterface;
 use Simdes\Services\Forms\User\CreateNewUserForm;
 use Simdes\Services\Forms\User\CredentialsForm;
@@ -27,7 +26,6 @@ use Simdes\Services\Forms\User\ProfileEditForm;
 use Simdes\Services\Forms\User\RegistrationForm;
 use Simdes\Services\Forms\User\ResetForm;
 use Simdes\Services\Forms\User\ResetPasswordForm;
-use Simdes\Services\Forms\User\UserEditForm;
 
 /**
  * Class UserRepository
@@ -71,15 +69,20 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     }
 
     /**
+     * Get List user by Organisasi_id
+     *
      * @param $term
      * @param $organisasi_id
      * @return mixed
      */
-    public function findAll($term, $organisasi_id)
+    public function getByOrganisasiId($term, $organisasi_id)
     {
-        return $this->model->where('organisasi_id', '=', $organisasi_id)
-            ->where('name', 'LIKE', '%' . $term . '%')
-            ->paginate(10);
+        return $this->model
+            ->FullTextSearch($term)
+            ->where('organisasi_id', '=', $organisasi_id)
+            ->orderBy('id','desc')
+            ->remember(10)
+            ->paginate(10,['id','name','email','is_admin','is_demo','is_active']);
     }
 
     /**
@@ -88,25 +91,19 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
      * @param $term
      * @return mixed
      */
-    public function getAllUser($term, $kab_id)
+    public function getAllUser($term)
     {
         return $this->model
             // penerapan pencarian dengan teknik Full Text Search
             ->FullTextSearch($term)
-
             // get list user kecuali user dengan tipe is_admin = 100
             // ini adalah admin tingkat kabupaten
             ->where('is_admin', '!=', 100)
-
-            // filter berdasarkan $kab_id ini implemetasi untuk
-            // pelatihan @todo : bisa jadi untuk nasional
-//            ->where('kab_id', '=', $kab_id)
-            ->with('organisasi')
-
             // order by id user terakhir mendaftar
             ->orderBy('id', 'desc')
-
-            ->paginate(10);
+            // save cache
+//            ->remember(10)
+            ->paginate(10,['id','name','email','is_admin','organisasi_id','is_demo','is_active']);
     }
 
     /**
@@ -115,7 +112,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
      */
     public function setDemo(User $user)
     {
-        // jadikan akun ini demo, diaktifkann oleh bakcoffice
+        // jadikan akun ini demo, diaktifkan oleh bakcoffice
         $user->is_demo = 1;
         $user->save();
         return $user;

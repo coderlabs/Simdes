@@ -47,9 +47,6 @@ class AuthController extends \BaseController
 
         return $this->redirectBack(['login_errors' => true]);
 
-//        if (Auth::attempt($credentials, $remember)) {
-//            return $this->redirectIntended(route('dashboard'));
-//        }
     }
 
 } 

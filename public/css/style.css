@@ -6505,3 +6505,9 @@ span.ui-helper-hidden-accessible {
     overflow: auto;
     max-height: 200px;
 }
+
+#avatar {
+    height: 35px !important;
+    width: 32px !important;
+    -o-object-fit: contain !important;
+}
