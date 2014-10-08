@@ -29,6 +29,8 @@ interface ProgramRepositoyInterface
      */
     public function findAll($term, $masalah_id, $organisasi_id);
 
+    public function getList($term, $organisasi_id);
+
     /**
      * @param array $data
      *
@@ -42,6 +44,8 @@ interface ProgramRepositoyInterface
      * @return mixed
      */
     public function findById($id);
+
+    public function findByOrganisasi_id($id,$organisasi_id);
 
 
     /**

@@ -88,11 +88,12 @@ class ProgramController extends \BaseController
     public function show($id)
     {
         $data = $this->masalah->findByFilter($id, $this->auth->getOrganisasiId());
+        $result = $this->program->findAll($term= null,$id,$this->auth->getOrganisasiId());
 
         if ($data == null) {
             return $this->redirectURLTo('data-rpjmdesa');
         } else {
-            $this->view('rpjmdesa.data-program', compact('data'));
+            $this->view('rpjmdesa.data-program', compact('data','result'));
         }
     }
 

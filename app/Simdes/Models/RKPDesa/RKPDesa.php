@@ -76,4 +76,9 @@ class RKPDesa extends Model
     {
         return $this->belongsTo('Simdes\Models\Pejabat\PejabatDesa', 'pejabat_desa_id');
     }
+
+    public function scopeFullTextSearch($query, $q)
+    {
+        return empty($q) ? $query : $query->whereRaw("MATCH(kegiatan,target,sifat,tujuan,sumber_dana,lokasi,sasaran)AGAINST(? IN BOOLEAN MODE)", [$q]);
+    }
 }

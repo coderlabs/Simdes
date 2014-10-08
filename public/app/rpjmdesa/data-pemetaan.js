@@ -23,7 +23,7 @@ function UpdateData() {
         $("#alert-notify").show().html("");
         switch (data.Status) {
             case "Sukses":
-                resultSuccess(data);
+                //resultSuccess(data);
                 methodSave();
                 break;
             case "Warning":

@@ -32,6 +32,6 @@ class Pemetaan extends Model{
     protected $fillable = ['masalah_id','rpjmdesa_id','pemetaan_1','pemetaan_2','pemetaan_3','pemetaan_4','pemetaan_5','jumlah'];
 
     public function masalah(){
-        return $this->belongsTo('Masalah','masalah_id');
+        return $this->belongsTo('Simdes\Models\RPJMDesa\Masalah','masalah_id');
     }
 } 

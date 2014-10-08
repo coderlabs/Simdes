@@ -60,6 +60,15 @@ class ProgramRepository extends AbstractRepository implements ProgramRepositoyIn
             ->paginate(10);
     }
 
+    public function getList($term, $organisasi_id)
+    {
+        return $this->model
+            ->FullTextSearch($term)
+            ->where('organisasi_id', '=', $organisasi_id)
+            ->with('program')
+            ->paginate(10);
+    }
+
     /**
      * @param array $data
      *
@@ -229,7 +238,13 @@ class ProgramRepository extends AbstractRepository implements ProgramRepositoyIn
     {
         return $this->model->find($id);
     }
-
+    public function findByOrganisasi_id($id,$organisasi_id)
+    {
+        return $this->model
+            ->where('id','=',$id)
+            ->where('organisasi_id','=',$organisasi_id)
+            ->first();
+    }
     /**
      * @return ProgramForm
      */

@@ -19,7 +19,7 @@
             </div>
             @endif
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <section class="panel">
                 <header class="panel-heading">
                     Profile Pengguna<span class="tools pull-right">

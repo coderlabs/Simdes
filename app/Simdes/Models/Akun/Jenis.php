@@ -16,28 +16,30 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package Simdes\Models
  */
-class Jenis extends Model {
-
-    /**
-     * @var string
-     */
-    protected $table = 'tb_akun_jenis';
+class Jenis extends Model
+{
 
     /**
      * @var string
      */
     public $timestamps = false;
-
     /**
-     * @var array     */
-    protected $fillable = ['kode_rekening','kelompok_id','jenis','referensi'];
+     * @var string
+     */
+    protected $table = 'tb_akun_jenis';
+    /**
+     * @var array
+     */
+    protected $fillable = ['kode_rekening', 'kelompok_id', 'jenis', 'referensi'];
 
-    public function kelompok(){
-        return $this->belongsTo('Simdes\Models\Akun\Kelompok','kelompok_id');
+    public function kelompok()
+    {
+        return $this->belongsTo('Simdes\Models\Akun\Kelompok', 'kelompok_id');
     }
 
     // todo implementasi fulltext search
-    public function scopeFullTextSearch($query,$q) {
-        return empty($q) ? $query : $query->whereRaw("MATCH(jenis)AGAINST(? IN BOOLEAN MODE)",[$q]);
+    public function scopeFullTextSearch($query, $q)
+    {
+        return empty($q) ? $query : $query->whereRaw("MATCH(jenis)AGAINST(? IN BOOLEAN MODE)", [$q]);
     }
 }

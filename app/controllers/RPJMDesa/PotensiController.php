@@ -72,11 +72,12 @@ class PotensiController extends \BaseController
     public function show($id)
     {
         $data = $this->masalah->findByFilter($id, $this->auth->getOrganisasiId());
+        $result = $this->potensi->findAll($term= null,$id,$this->auth->getOrganisasiId());
 
         if ($data == null) {
             return $this->redirectURLTo('rpjmdesa.data-rpjmdesa');
         } else {
-            $this->view('rpjmdesa.data-potensi', compact('data'));
+            $this->view('rpjmdesa.data-potensi', compact('data','result'));
         }
     }
 

@@ -82,14 +82,6 @@ function getProgram() {
             $("#program").html("").append("<option value='0|0'>Pilih Program</option>");
             $.each(data, function (index, val) {
                 $("#program").append("<option value='" + val.id + '|' + val.rpjmdesa_id + '|' + val.lokasi + '|' + val.waktu + '|' + val.sasaran + '|' + val.tujuan + '|' + val.target + '|' + val.pagu_anggaran + '|' + val.sumber_dana_id + "'>" + val.program + "</option>")
-//
-//                $("lokasi").val(val.lokasi);
-//                $("waktu").val(val.waktu);
-//                $("sasaran").val(val.sasaran);
-//                $("tujuan").val(val.tujuan);
-//                $("target").val(val.target);
-//                $("pagu_anggaran").val(val.pagu_anggaran);
-//                $("sumber_dana_id").val(val.sumber_dana_id);
             });
         },
         error: function () {
@@ -97,29 +89,6 @@ function getProgram() {
         }
     });
 }
-//$(function () {
-//    $("#program").change(function () {
-//        $.ajax({
-//            type: "get",
-//            url: url_program,
-//            success: function (data) {
-//                CekAuth(data);
-//                $.each(data, function (index, val) {
-//                    $("lokasi").val(val.lokasi);
-//                    $("waktu").val(val.waktu);
-//                    $("sasaran").val(val.sasaran);
-//                    $("tujuan").val(val.tujuan);
-//                    $("target").val(val.target);
-//                    $("pagu_anggaran").val(val.pagu_anggaran);
-//                    $("sumber_dana_id").val(val.sumber_dana_id);
-//                });
-//            },
-//            error: function () {
-//                ErrMsg()
-//            }
-//        });
-//    })
-//});
 // ajax get sumber dana
 function getSumberDana() {
     $.ajax({
@@ -168,8 +137,7 @@ function SimpanData() {
         data: $("#myForm").serialize()
     }).done(function (data) {
         CekAuth(data);
-        $("#alert-notify").show();
-        $("#alert-notify").html("");
+        $("#alert-notify").show().html("");
         switch (data.Status) {
             case "Sukses":
                 resultSuccess(data);
@@ -195,10 +163,11 @@ function methodSaveData() {
 function TampilData() {
     OpenLoading();
     id = $("#masalah_id").val();
+    program_id = $("#program_id").val();
     term = $("#cari").val();
     $.ajax({
         type: "post",
-        url: url + "/read",
+        url: url_rkpdesa + '/' + program_id,
         data: "term=" + term + token,
         cache: false,
         success: function (data) {
@@ -227,12 +196,14 @@ function resultData(data) {
     } else {
         $.each(obj[6], function (index, val) {
             $("#datalist").append(
-                "<tr><td>" + val.program.program + "</td>" +
+                "<tr><td>" + val.kegiatan + "</td>" +
                 "<td>" + val.lokasi + "</td>" +
                 "<td>" + val.waktu + "</td>" +
                 "<td class='text-right'>" + toRp(val.pagu_anggaran) + "</td>" +
                 "<td><div class='btn-toolbar'>" +
-                "<a title='Realisasi Program RKPDesa' class='btn btn-sm btn-white' href='" + url + '/' + val.id + "' ><i class='fa fa-cogs' ></i></a>" +
+                "<a title='Finish' class='btn btn-sm btn-white' href='" + url + val.id + "' ><i class='fa fa-check' ></i></a>" +
+                "<button title='Edit' class='btn btn-sm btn-default' onclick='EditData(" + val.id + ")'><i class='fa fa-edit' ></i></button>" +
+                "<button title='Hapus' class='btn btn-sm btn-danger ' onclick='HapusData(" + val.id + ")'><i class='fa fa-trash-o' ></i></button>" +
                 "</div>" +
                 "</td></tr>"
             );
@@ -307,8 +278,7 @@ function UpdateData() {
         data: '_method=put&' + $("#myForm").serialize()
     }).done(function (data) {
         CekAuth(data);
-        $("#alert-notify").show();
-        $("#alert-notify").html("");
+        $("#alert-notify").show().html("");
         switch (data.Status) {
             case "Sukses":
                 resultSuccess(data);
@@ -362,7 +332,6 @@ function AksiHapus() {
 // methode tombol batal
 function TombolBatal() {
     // kosongkan data
-    $("#kegiatan").attr('disabled', 'disabled');
     // hide
     $("#myForm").hide();
     $("#alert-notify").fadeOut(2000);
@@ -371,19 +340,19 @@ function TombolBatal() {
     $("#btn-simpan").text("Simpan");
     $("#cmd").val('tambah');
     $("label.error").hide();
-    $("#tahun").removeClass('error');
-    $("#program").html("").removeClass('error');
-    $("#satuan").val("").removeClass('error');
-    $("#tujuan").val("").removeClass('error');
-    $("#target").val("").removeClass('error');
-    $("#lokasi").val("").removeClass('error');
-    $("#sasaran").val("").removeClass('error');
-    $("#waktu").val("").removeClass('error');
-    $("#pagu_anggaran").val("").removeClass('error');
-    $("#sumber_dana").val("").removeClass('error');
-    $("#pejabat_desa_id").html("").removeClass('error');
-    $("#kegiatan_id").html("");
-    $("#sumber_dana_id").html("");
+    //$("#tahun").removeClass('error');
+    //$("#program").html("").removeClass('error');
+    //$("#satuan").val("").removeClass('error');
+    //$("#tujuan").val("").removeClass('error');
+    //$("#target").val("").removeClass('error');
+    //$("#lokasi").val("").removeClass('error');
+    //$("#sasaran").val("").removeClass('error');
+    //$("#waktu").val("").removeClass('error');
+    //$("#pagu_anggaran").val("").removeClass('error');
+    //$("#sumber_dana").val("").removeClass('error');
+    //$("#pejabat_desa_id").html("").removeClass('error');
+    //$("#kegiatan_id").html("");
+    //$("#sumber_dana_id").html("");
     // show
     $("#form-option").show();
     $("#form-cari").show();
@@ -393,11 +362,17 @@ function TombolBatal() {
 }
 // methode tombol tambah
 function TombolTambah() {
-    $("#kegiatan_id").attr('disabled', 'disabled');
     // call ajax
-    getProgram();
+    getKegiatan($("#program_id").val());
     getSumberDana();
     getPejabatDesa();
+
+    // set value
+    setTimeout(function () {
+        $("#pejabat_desa_id").val($("input[name=pejabat_rpjmdesa]").val());
+        $("#status").val($("input[name=status_rpjmdesa]").val());
+        $("#sumber_dana_id").val($("input[name=sumberdana_rpjmdesa]").val());
+    }, 1500);
     // enabled control
     $("#btn-simpan").removeAttr('disabled');
     $("#tab-content").hide();

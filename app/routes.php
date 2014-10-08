@@ -149,6 +149,7 @@ Route::group(['namespace' => 'RKPDesa', 'before' => ['auth', 'rkpdesa']], functi
 # data RKPDesa
     Route::resource('data-rkpdesa', 'RKPDesaController');
     Route::post('data-rkpdesa/read', ['as' => 'rkpdesa.read', 'uses' => 'RKPDesaController@read']);
+    Route::post('rkpdesa-get-list/{program_id}', ['as' => 'rkpdesa.getlist', 'uses' => 'RKPDesaController@getRkpdesa']);
 # Indikator Masukan
     Route::resource('data-indikator-masukan', 'IndikatorMasukanController');
 # Indikator Keluaran
@@ -268,7 +269,7 @@ Route::get('ajax-kewenangan', ['as' => 'kewenangan.ajax', 'uses' => 'BidangContr
 Route::get('ajax-bidang', ['as' => 'bidang.ajax', 'uses' => 'ProgramController@ajax']);
 Route::get('ajax-program', ['as' => 'program.ajax', 'uses' => 'KegiatanController@ajax']);
 Route::post('ajax-kegiatan/{program}', ['as' => 'kegiatan.ajax', 'uses' => 'KegiatanController@ajaxKegiatan']);
-Route::get('ajax-sumber-dana', ['as' => 'sumber.ajax', 'uses' => 'AjaxController@sumberDana']);
+
 Route::get('ajax-rpjmdesa', ['as' => 'sumber.ajax', 'uses' => 'RpjmdesaController@ajax']);
 Route::get('ajax-prov', ['as' => 'prov.ajax', 'uses' => 'AjaxController@ajaxProv']);
 
@@ -304,6 +305,8 @@ Route::group(['namespace' => 'Ajax', 'before' => 'auth'], function () {
     #pendapatan
     Route::get('ajax-count-pendapatan', ['as' => 'ajax.list.count.pendapatan', 'uses' => 'AjaxController@getCountPendapatan']);
     Route::get('ajax-pendapatan', ['as' => 'ajax.list.pendapatan', 'uses' => 'AjaxPendapatan@getPendapatan']);
+    #sumberdaba
+    Route::get('ajax-sumber-dana', ['as' => 'sumber.ajax', 'uses' => 'AjaxSumberDana@getList']);
 #ssh
     Route::get('ajax-list-kelas-barang', ['as' => 'ajax.list.kelas.barang', 'uses' => 'AjaxSSHController@getListKelasBarang']);
     Route::post('ajax-list-kelompok-barang', ['as' => 'ajax.list.kelompok.barang', 'uses' => 'AjaxSSHController@getListKelompokBarang']);
@@ -461,6 +464,8 @@ Route::group(['namespace' => 'BackOffice', 'before' => ['auth', 'backoffice']], 
     Route::post('backoffice/set-active-user', 'UserListController@setActive');
     Route::post('backoffice/unset-active-user', 'UserListController@unsetActive');
 });
+
+
 
 Route::get('xls-importer', function () {
     return $exel = Excel::load('xls/data.xlsx')->toArray();

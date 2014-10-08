@@ -9,6 +9,7 @@
 namespace RKPDesa;
 
 use Simdes\Repositories\RKPDesa\RKPDesaRepositoryInterface;
+use Simdes\Repositories\RPJMDesa\ProgramRepositoyInterface;
 use Simdes\Repositories\User\UserRepositoryInterface;
 
 /**
@@ -20,16 +21,23 @@ class RKPDesaController extends \BaseController
 {
 
     /**
-     * @var \Simdes\Repositories\RKPDesa\RKPDesaRepositoryInterface
+     * @var RKPDesaRepositoryInterface
      */
     private $RKPDesa;
 
     /**
+     * @var ProgramRepositoyInterface
+     */
+    protected $program;
+
+    /**
      * @param RKPDesaRepositoryInterface $RKPDesa
+     * @param ProgramRepositoyInterface $program
      * @param UserRepositoryInterface $auth
      */
     public function __construct(
         RKPDesaRepositoryInterface $RKPDesa,
+        ProgramRepositoyInterface $program,
         UserRepositoryInterface $auth
     )
     {
@@ -37,6 +45,7 @@ class RKPDesaController extends \BaseController
 
         $this->RKPDesa = $RKPDesa;
         $this->auth = $auth;
+        $this->program = $program;
     }
 
     /**
@@ -44,7 +53,8 @@ class RKPDesaController extends \BaseController
      */
     public function index()
     {
-        $this->view('rkpdesa.data-rkpdesa');
+        $data = $this->program->getList($term = null,$this->auth->getOrganisasiId());
+        $this->view('rkpdesa.data-rkpdesa',compact('data'));
     }
 
     /**
@@ -53,8 +63,7 @@ class RKPDesaController extends \BaseController
     public function read()
     {
         $term = $this->input('term');
-
-        return $this->RKPDesa->findAll($term, $this->auth->getOrganisasiId());
+        return $this->program->getList($term,$this->auth->getOrganisasiId());
     }
 
     /**
@@ -64,15 +73,19 @@ class RKPDesaController extends \BaseController
      */
     public function show($id)
     {
-        $data = $this->RKPDesa->findByFilter($id, $this->auth->getOrganisasiId());
+        $data = $this->program->findByOrganisasi_id($id,$this->auth->getOrganisasiId());
+
+        $result = $this->RKPDesa->findAll($term = null, $this->auth->getOrganisasiId(),$id);
 
         if (is_null($data)) {
             return $this->redirectURLTo('data-rkpdesa');
         } else {
-            $this->view('rkpdesa.detail-rkpdesa', [
-                'data' => $data
-            ]);
+            $this->view('rkpdesa.detail-rkpdesa',compact('data','result'));
         }
+    }
+
+    public function getRkpdesa($program_id){
+        return $this->RKPDesa->findAll($term = null, $this->auth->getOrganisasiId(),$program_id);
     }
 
     /**

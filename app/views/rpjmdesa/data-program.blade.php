@@ -71,8 +71,11 @@
                     }}
                     {{ Form::hidden('masalah_id', $data->id,['id' => 'masalah_id','name' => 'masalah_id']) }}
                     {{ Form::hidden('', 'tambah',['id' => 'cmd']) }}
-                    {{ Form::hidden('', '',['id' => 'last_page']) }}
-                    {{ Form::hidden('', '',['id' => 'current_page']) }}
+                    {{ Form::hidden('', $result->getLastPage(),['id' => 'last_page']) }}
+                    {{ Form::hidden('', $result->getCurrentPage(),['id' => 'current_page']) }}
+                    {{ Form::hidden('', $result->getTotal(),['id' => 'total']) }}
+                    {{ Form::hidden('', $result->getTo(),['id' => 'to']) }}
+
                     <div class="form-group">
                         {{ Form::label('program_id', 'Program', ['class' => 'col-md-3 control-label']) }}
                         <div class="col-md-6">
@@ -161,10 +164,28 @@
                                     <th class="col-md-3">Lokasi</th>
                                     <th class="col-md-1">Waktu</th>
                                     <th class="col-md-2 text-right">Pagu Anggaran</th>
-                                    <th class="col-md-2 text-right">Aksi</th>
+                                    <th class="col-md-2">Aksi</th>
                                 </tr>
                                 </thead>
-                                <tbody id="datalist"></tbody>
+                                <tbody id="datalist">
+                                @foreach($result as $dt)
+                                <tr>
+                                    <td>{{$dt->program}}</td>
+                                    <td>{{$dt->lokasi}}</td>
+                                    <td>{{$dt->waktu}}</td>
+                                    <td class="text-right">{{ number_format( $dt->pagu_anggaran, 0 , '' , '.' ) }}</td>
+                                    <td>
+                                        <div class='btn-toolbar'>
+                                            <button class="btn btn-sm btn-default"
+                                                    onclick="EditData({{$dt->id}})"><i class="fa fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-danger" onclick="HapusData({{$dt->
+                                                id}})"><i class="fa fa-trash-o"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </section>

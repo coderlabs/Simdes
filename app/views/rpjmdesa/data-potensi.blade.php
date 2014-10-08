@@ -71,8 +71,11 @@
                     {{ Form::hidden('rpjmdesa_id', $data->rpjmdesa_id,['id' => 'rpjmdesa_id','name' => 'rpjmdesa_id']) }}
                     {{ Form::hidden('masalah_id', $data->id,['id' => 'masalah_id','name' => 'masalah_id']) }}
                     {{ Form::hidden('', 'tambah',['id' => 'cmd']) }}
-                    {{ Form::hidden('', '',['id' => 'last_page']) }}
-                    {{ Form::hidden('', '',['id' => 'current_page']) }}
+                    {{ Form::hidden('', $result->getLastPage(),['id' => 'last_page']) }}
+                    {{ Form::hidden('', $result->getCurrentPage(),['id' => 'current_page']) }}
+                    {{ Form::hidden('', $result->getTotal(),['id' => 'total']) }}
+                    {{ Form::hidden('', $result->getTo(),['id' => 'to']) }}
+
                     <div class="form-group">
                         {{ Form::label('potensi', 'Potensi', ['class' => 'col-md-3 control-label']) }}
                         <div class="col-md-6">
@@ -94,11 +97,26 @@
                              <table class="table table-striped table-condensed cf">
                                  <thead class="cf">
                                 <tr>
-                                    <th class="col-md-8">Potensi</th>
-                                    <th class="col-md-4 text-right">Aksi</th>
+                                    <th class="col-md-10">Potensi</th>
+                                    <th class="col-md-2">Aksi</th>
                                 </tr>
                                 </thead>
-                                <tbody id="datalist"></tbody>
+                                <tbody id="datalist">
+                                @foreach($result as $dt)
+                                <tr>
+                                    <td>{{$dt->potensi}}</td>
+                                    <td>
+                                        <div class='btn-toolbar'>
+                                            <button class="btn btn-sm btn-default"
+                                                    onclick="EditData({{$dt->id}})"><i class="fa fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-danger" onclick="HapusData({{$dt->
+                                                id}})"><i class="fa fa-trash-o"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </section>
@@ -117,7 +135,7 @@
             </div>
             <div class="modal-body">
                 Yakin akan menghapus data ini?
-                {{ Form::hidden('id_hapus', Input::old('id_hapus'),array('id' => 'id_hapus','name' => 'id_hapus')) }}
+                {{ Form::hidden('id_hapus', '',['id' => 'id_hapus','name' => 'id_hapus']) }}
             </div>
             <div class="modal-footer">
                 <button data-dismiss="modal" class="btn btn-default" type="button">Batal</button>

@@ -40,7 +40,7 @@
                     {{ Form::open(['onsubmit' => 'return false', 'id' => 'myForm', 'class' => 'form-horizontal', 'role' => 'form']) }}
                     {{ Form::hidden('id', $data->id,['id' => 'id','name' => 'id']) }}
                     {{ Form::hidden('rpjmdesa_id', $data->rpjmdesa_id,['id' => 'rpjmdesa_id']) }}
-                    <div class="form-group">
+                    <div class="form-group hidden-xs hidden-sm">
                         <strong class="col-md-4 text-right">Pemetaan</strong>
                         <div class="col-md-2">
                             <strong>Bobot</strong>
@@ -49,31 +49,61 @@
                     <div class="form-group">
                         {{ Form::label('pemetaan_1', 'Dirasakan oleh orang banyak.', ['class' => 'col-md-4 control-label']) }}
                         <div class="col-md-2">
-                            {{ Form::text('pemetaan_1',isset($data->pemetaan_1) ? $data->pemetaan_1: '', ['class' => 'form-control','onkeypress' => 'nominal(event)']) }}
+                            {{ Form::select('pemetaan_1',[
+                            "1" => "Tidak Tinggi",
+                            "5" => "Kurang Tinggi",
+                            "10" => "Cukup Tinggi",
+                            "15" => "Tinggi",
+                            "20" => "Sangat Tinggi"
+                            ],$data->pemetaan_1, ['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('pemetaan_2', 'Sangat Parah', ['class' => 'col-md-4 control-label']) }}
                         <div class="col-md-2">
-                            {{ Form::text('pemetaan_2',isset($data->pemetaan_2) ? $data->pemetaan_2: '', ['class' => 'form-control','onkeypress' => 'validate(event)']) }}
+                        {{ Form::select('pemetaan_2',[
+                            "1" => "Tidak Tinggi",
+                            "5" => "Kurang Tinggi",
+                            "10" => "Cukup Tinggi",
+                            "15" => "Tinggi",
+                            "20" => "Sangat Tinggi"
+                            ],$data->pemetaan_2, ['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('pemetaan_3', 'Menghambat Peningkatan Pendapatan', ['class' => 'col-md-4 control-label']) }}
                         <div class="col-md-2">
-                            {{ Form::text('pemetaan_3',isset($data->pemetaan_3) ? $data->pemetaan_3: '', ['class' => 'form-control','onkeypress' => 'validate(event)']) }}
+                        {{ Form::select('pemetaan_3',[
+                            "1" => "Tidak Tinggi",
+                            "5" => "Kurang Tinggi",
+                            "10" => "Cukup Tinggi",
+                            "15" => "Tinggi",
+                            "20" => "Sangat Tinggi"
+                            ],$data->pemetaan_3, ['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('pemetaan_4', 'sering Terjadi', ['class' => 'col-md-4 control-label']) }}
                         <div class="col-md-2">
-                            {{ Form::text('pemetaan_4',isset($data->pemetaan_4) ? $data->pemetaan_4: '', ['class' => 'form-control','onkeypress' => 'validate(event)']) }}
+                        {{ Form::select('pemetaan_4',[
+                            "1" => "Tidak Tinggi",
+                            "5" => "Kurang Tinggi",
+                            "10" => "Cukup Tinggi",
+                            "15" => "Tinggi",
+                            "20" => "Sangat Tinggi"
+                            ],$data->pemetaan_4, ['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('pemetaan_5', 'Kriteria lainnya', ['class' => 'col-md-4 control-label']) }}
                         <div class="col-md-2">
-                            {{ Form::text('pemetaan_5',isset($data->pemetaan_5) ? $data->pemetaan_5: '', ['class' => 'form-control','onkeypress' => 'validate(event)']) }}
+                        {{ Form::select('pemetaan_5',[
+                            "1" => "Tidak Tinggi",
+                            "5" => "Kurang Tinggi",
+                            "10" => "Cukup Tinggi",
+                            "15" => "Tinggi",
+                            "20" => "Sangat Tinggi"
+                            ],$data->pemetaan_5, ['class' => 'form-control']) }}
                         </div>
                     </div>
                     <div class="form-group">

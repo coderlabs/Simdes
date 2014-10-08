@@ -268,5 +268,11 @@ class RepositoryServiceProvider extends ServiceProvider
             'Simdes\Repositories\Eloquent\Kewenangan\BidangRepository'
         );
 
+        // Sumber dana
+        $this->app->bind(
+            'Simdes\Repositories\SumberDana\SumberDanaInterface',
+            'Simdes\Repositories\Eloquent\SumberDana\SumberDanaRepository'
+        );
+
     }
 }

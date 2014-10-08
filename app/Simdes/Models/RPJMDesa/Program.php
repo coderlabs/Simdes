@@ -62,7 +62,12 @@ class Program extends Model
      */
     public function masalah()
     {
-        return $this->belongsTo('Simdes\RPJMDesa\Masalah', 'masalah_id');
+        return $this->belongsTo('Simdes\Models\RPJMDesa\Masalah', 'masalah_id');
+    }
+
+    public function pejabat()
+    {
+        return $this->belongsTo('Simdes\Models\Pejabat\PejabatDesa', 'pejabat_desa_id');
     }
 
     public function scopeFullTextSearch($query, $q)

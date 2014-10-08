@@ -91,11 +91,13 @@ class RKPDesaRepository extends AbstractRepository implements RKPDesaRepositoryI
      *
      * @return mixed
      */
-    public function findAll($term, $organisasi_id)
+    public function findAll($term, $organisasi_id, $program_id)
     {
-        return $this->model->orderBy('id')
-            ->where('kegiatan', 'LIKE', '%' . $term . '%')
+        return $this->model
+            ->FullTextSearch($term)
             ->where('organisasi_id', '=', $organisasi_id)
+            ->where('program_id', '=', $program_id)
+            ->orderBy('id')
             ->paginate(10, ['id', 'kegiatan', 'satuan', 'tahun', 'lokasi', 'waktu', 'pagu_anggaran']);
     }
 
@@ -150,14 +152,13 @@ class RKPDesaRepository extends AbstractRepository implements RKPDesaRepositoryI
         // tujuannya untuk mendapatkan id dari masing2 table
         // input menggunakan function agar rapi dan akan
         // memakai stored prosedure jika mungkin
-        $data = $this->insertIndikator($RKPDesa->id, $RKPDesa->organisasi_id);
+//        $data = $this->insertIndikator($RKPDesa->id, $RKPDesa->organisasi_id);
 
         // siapkan data untuk di update ke RKPDesa
-        $up_data = $this->findById($RKPDesa->id);
-        $this->updateRKPDesa($up_data, $data);
+//        $up_data = $this->findById($RKPDesa->id);
+//        $this->updateRKPDesa($up_data, $data);
 
         return $RKPDesa;
-
     }
 
 
@@ -171,34 +172,34 @@ class RKPDesaRepository extends AbstractRepository implements RKPDesaRepositoryI
     {
         // simpan ke tb_indikator_masukan
         $inMas = $this->indikatorMasukan->create([
-            'rkpdesa_id'    => $rkpdesa_id,
+            'rkpdesa_id' => $rkpdesa_id,
             'organisasi_id' => $organisasi_id
         ]);
 
 
         // simpan ke tb_indikator_masukan
         $inKel = $this->indikatorKeluaran->create([
-            'rkpdesa_id'    => $rkpdesa_id,
+            'rkpdesa_id' => $rkpdesa_id,
             'organisasi_id' => $organisasi_id
         ]);
 
         // simpan ke tb_indikator_masukan
         $inHas = $this->indikatorHasil->create([
-            'rkpdesa_id'    => $rkpdesa_id,
+            'rkpdesa_id' => $rkpdesa_id,
             'organisasi_id' => $organisasi_id
         ]);
 
         // simpan ke tb_indikator_masukan
         $inMan = $this->indikatorManfaat->create([
-            'rkpdesa_id'    => $rkpdesa_id,
+            'rkpdesa_id' => $rkpdesa_id,
             'organisasi_id' => $organisasi_id
         ]);
 
         return $data = [
-            'indikator_masukan_id'  => $inMas->id,
+            'indikator_masukan_id' => $inMas->id,
             'indikator_keluaran_id' => $inKel->id,
-            'indikator_hasil_id'    => $inHas->id,
-            'indikator_manfaat_id'  => $inMan->id
+            'indikator_hasil_id' => $inHas->id,
+            'indikator_manfaat_id' => $inMan->id
         ];
     }
 
@@ -343,28 +344,35 @@ class RKPDesaRepository extends AbstractRepository implements RKPDesaRepositoryI
     public function danaAPBN($organisasi_id)
     {
         return $this->model->where('organisasi_id', '=', $organisasi_id)
-            ->where('sumber_dana_id','=',2)
+            ->where('sumber_dana_id', '=', 2)
             ->with('pejabatDesa')->get();
     }
 
-    public function apbProv($organisasi_id){
+    public function apbProv($organisasi_id)
+    {
         return $this->model->where('organisasi_id', '=', $organisasi_id)
-            ->where('sumber_dana_id','=',13)
+            ->where('sumber_dana_id', '=', 13)
             ->with('pejabatDesa')->get();
     }
-    public function apbKab($organisasi_id){
+
+    public function apbKab($organisasi_id)
+    {
         return $this->model->where('organisasi_id', '=', $organisasi_id)
-            ->where('sumber_dana_id','=',14)
+            ->where('sumber_dana_id', '=', 14)
             ->with('pejabatDesa')->get();
     }
-    public function apbDesa($organisasi_id){
+
+    public function apbDesa($organisasi_id)
+    {
         return $this->model->where('organisasi_id', '=', $organisasi_id)
-            ->whereIn('sumber_dana_id',['1','3','4','8'])
+            ->whereIn('sumber_dana_id', ['1', '3', '4', '8'])
             ->with('pejabatDesa')->get();
     }
-    public function swasta($organisasi_id){
+
+    public function swasta($organisasi_id)
+    {
         return $this->model->where('organisasi_id', '=', $organisasi_id)
-            ->whereIn('sumber_dana_id',['6','7'])
+            ->whereIn('sumber_dana_id', ['6', '7'])
             ->with('pejabatDesa')->get();
     }
 

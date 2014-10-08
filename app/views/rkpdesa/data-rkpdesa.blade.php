@@ -11,41 +11,45 @@
                 <button data-dismiss="alert" class="close close-sm fa fa-times" type="button"></button>
             </div>
             <section class="panel">
-                <header class="panel-heading wht-bg">
-                    <h4 class="gen-case">RKPDesa
-                        <form id="form-cari" action="#" class="pull-right src-position">
-                            <div class="input-append">
-                                <input id="cari" type="text" class="form-control  tooltips"
-                                       placeholder="Cari : Kegiatan" onfocus="this.select()"
-                                       data-original-title="Ketikan data yang ingin dicari, kemudian tekan [Enter]"
-                                       data-placement="top">
-                            </div>
-                        </form>
-                    </h4>
+                <header class="panel-heading">
+                    <div class="ellipsis">RKPDesa</div>
+                        <span id="form-cari" class="tools pull-right">
+                            <input id="cari" type="text" class="form-control tooltips input-widget" placeholder="Cari : Program"
+                                   onfocus="this.select()"
+                                   data-original-title="Ketikan data yang ingin dicari, kemudian tekan [Enter]"
+                                   data-placement="top">
+                        </span>
                 </header>
                 <div class="panel-body minimal">
                     <div id="form-option" class="mail-option">
-                        <button id="btn-tambah" data-original-title="Tambah" data-placement="top"
-                                class="btn btn-primary tooltips">Tambah
-                        </button>
-                        <button id="btn-refresh" data-original-title="Refresh" data-placement="top"
-                                class="btn btn-white tooltips"><i class=" fa fa-refresh"></i></button>
-                        <button id="btn-cetak" data-original-title="Cetak Dokumen RKP-Desa" data-placement="top"
-                                class="btn btn-white tooltips"><i class=" fa fa-print"></i></button>
-                        <ul class="inbox-pagination">
-                            <li><span id="infopage"></span></li>
-                            <button id="mundur" disabled="disabled" class="btn btn-white"><i
-                                    class="fa fa-chevron-left"></i></button>
-                            <button id="maju" disabled="disabled" class="btn btn-white"><i
-                                    class="fa  fa-chevron-right"></i></button>
-                        </ul>
+                        <div id="form-option" class="mail-option">
+                            <button id="btn-tambah" data-original-title="Tambah" data-placement="top"
+                                    class="btn btn-sm btn-primary tooltips"><i class=" fa fa-plus-square"></i>
+                            </button>
+                            <button id="btn-refresh" data-original-title="Refresh" data-placement="top"
+                                    class="btn btn-sm btn-white tooltips"><i class=" fa fa-refresh"></i>
+                            </button>
+                            <ul class="inbox-pagination">
+                                <li><span id="infopage"></span></li>
+                                <button id="awal" disabled="disabled" class="btn btn-sm  btn-white tooltips"  data-original-title="Awal" data-placement="top"><i
+                                        class="fa fa-angle-double-left"></i></button>
+                                <button id="mundur" disabled="disabled" class="btn  btn-sm btn-white tooltips"  data-original-title="Sebelumnya" data-placement="top"><i
+                                        class="fa fa-chevron-left"></i></button>
+                                <button id="maju" disabled="disabled" class="btn  btn-sm btn-white tooltips"  data-original-title="Berikutnya" data-placement="top"><i
+                                        class="fa  fa-chevron-right"></i></button>
+                                <button id="akhir" disabled="disabled" class="btn  btn-sm btn-white tooltips"  data-original-title="Akhir" data-placement="top"><i
+                                        class="fa  fa-angle-double-right"></i></button>
+                            </ul>
+                        </div>
                     </div>
 
                     {{ Form::open(['onsubmit' => 'return false', 'id' => 'myForm', 'class' => 'form-horizontal', 'role'
                     => 'form','style' => 'display:none;']) }}
-                    {{ Form::hidden('id', Input::old('id'),['id' => 'id','name' => 'id']) }}
-                    {{ Form::hidden('', '',['id' => 'last_page']) }}
-                    {{ Form::hidden('', '',['id' => 'current_page']) }}
+                    {{ Form::hidden('id', '',['id' => 'id','name' => 'id']) }}
+                    {{ Form::hidden('', $data->getLastPage(),['id' => 'last_page']) }}
+                    {{ Form::hidden('', $data->getCurrentPage(),['id' => 'current_page']) }}
+                    {{ Form::hidden('', $data->getTotal(),['id' => 'total']) }}
+                    {{ Form::hidden('', $data->getTo(),['id' => 'to']) }}
                     {{ Form::hidden('', 'tambah',['id' => 'cmd']) }}
                     {{ Form::hidden('rpjmdesa_id','', ['type' => 'hidden','id' => 'rpjmdesa_id']) }}
                     {{ Form::hidden('program_id','', ['type' => 'hidden','id' => 'program_id']) }}
@@ -82,7 +86,7 @@
                     <div class="form-group">
                         {{ Form::label('waktu', 'Waktu', ['class' => 'col-md-3 control-label']) }}
                         <div class="col-md-4">
-                            {{ Form::text('waktu','', ['class' => 'form-control']) }}
+                            {{ Form::text('waktu','12 Bulan', ['class' => 'form-control']) }}
                         </div>
                     </div>
 
@@ -147,21 +151,36 @@
                     </div>
                     {{ Form::close() }}
 
-                    <div id="tab-content" class="table-inbox-wrap">
-                        <table class="table table-hover">
-                            <head>
+                    <section id="flip-scroll">
+                        <div id="tab-content">
+                            <table class="table table-striped table-condensed cf">
+                                <thead class="cf">
                                 <tr>
-                                    <th class="col-md-1">Tahun</th>
-                                    <th class="col-md-4">Kegiatan</th>
-                                    <th class="col-md-2">Lokasi</th>
+                                    <th class="col-md-4">Program</th>
+                                    <th class="col-md-3">Lokasi</th>
                                     <th class="col-md-1">Waktu</th>
                                     <th class="col-md-2 text-right">Pagu Anggaran</th>
-                                    <th class="col-md-2 text-right">Aksi</th>
+                                    <th class="col-md-2">Aksi</th>
                                 </tr>
-                            </head>
-                            <tbody id="datalist"></tbody>
-                        </table>
-                    </div>
+                                </thead>
+                                <tbody id="datalist">
+                                @foreach($data as $dt)
+                                <tr>
+                                    <td>{{$dt->program}}</td>
+                                    <td>{{$dt->lokasi}}</td>
+                                    <td>{{$dt->waktu}}</td>
+                                    <td class="text-right">{{ number_format( $dt->pagu_anggaran, 0 , '' , '.' ) }}</td>
+                                    <td>
+                                        <div class='btn-toolbar'>
+                                            <a title="Realisasi Program RKPDesa" class='btn btn-sm btn-white' href="{{URL::to('data-rkpdesa')}}/{{$dt->id}}"><i class="fa fa-cogs"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
                 </div>
             </section>
         </div>

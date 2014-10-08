@@ -24,7 +24,7 @@ interface RKPDesaRepositoryInterface
      *
      * @return mixed
      */
-    public function findAll($term, $organisasi_id);
+    public function findAll($term, $organisasi_id,$program_id);
 
     /**
      * @param array $data

@@ -11,7 +11,20 @@ $(document).ready(function () {
     $("#menu-rpjmdesa").addClass("active");
     $("#mundur").attr('disabled', 'disabled');
     $("#alert-notify").hide();
-    TampilData(1);
+    var current_page = $("#current_page").val();
+    var to = $("#to").val();
+    var total = $("#total").val();
+    if(total == 0){
+        $("#infopage").text('0 - ' + to + ' dari ' + total);
+    } else {
+        $("#infopage").text(current_page + ' - ' + to + ' dari ' + total);
+    }
+    // handle pagination
+    if (total > 10) {
+        $("#mundur").attr('disabled', 'disabled');
+        $("#maju").removeAttr('disabled');
+        $("#akhir").removeAttr('disabled');
+    }
     // ketika ada event enter untuk pencarian
     $("#cari").keypress(function (event) {
         if (event.which == 13) {
@@ -62,9 +75,9 @@ function resultData(data) {
         $.each(obj[6], function (index, val) {
             $("#datalist").append(
                 "<tr><td>" + val.potensi +
-                "</td><td><div class='btn-toolbar text-right'>" +
-                "<button title='Edit' class='btn btn-default fa fa-edit' onclick='EditData(" + val.id + ")'></button>" +
-                "<button title='Hapus' class='btn btn-danger fa fa-trash-o' onclick='HapusData(" + val.id + ")'></button>" +
+                "<td><div class='btn-toolbar'>" +
+                "<button title='Edit' class='btn btn-sm btn-default' onclick='EditData(" + val.id + ")'><i class='fa fa-edit' ></i></button>" +
+                "<button title='Hapus' class='btn btn-sm btn-danger ' onclick='HapusData(" + val.id + ")'><i class='fa fa-trash-o' ></i></button>" +
                 "</div>" +
                 "</td></tr>"
             )
