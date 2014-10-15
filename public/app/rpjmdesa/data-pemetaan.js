@@ -19,7 +19,6 @@ function UpdateData() {
         type: 'post',
         data: '_method=put&' + $("#myForm").serialize()
     }).done(function (data) {
-        CekAuth(data);
         $("#alert-notify").show().html("");
         switch (data.Status) {
             case "Sukses":
@@ -33,15 +32,22 @@ function UpdateData() {
                 resultValidation(data);
                 break;
         }
-    }).fail(function () {ErrMsg()})
+    }).fail(function () {
+        ErrMsg()
+    })
 }
 function methodSave() {
-    $("#alert-notify").fadeOut(3000);
+    CloseSpinner();
+    $("#alert-notify")
+        .removeClass('alert-danger')
+        .addClass('alert-success')
+        .append("<ul style='margin-bottom: 0px;'> Berhasil update data pemetaan, anda akan diarahkan ke halaman Masalah dalam 5 detik.</ul>")
+        .fadeOut(5000);
     var jml = eval($("#pemetaan_1").val()) + eval($("#pemetaan_2").val()) + eval($("#pemetaan_3").val()) + eval($("#pemetaan_4").val()) + eval($("#pemetaan_5").val())
     $("#jumlah").val(jml);
     setTimeout(function () {
         window.location.assign(url_masalah + '/' + $("#rpjmdesa_id").val());
-    }, 1000);
+    }, 5000);
 }
 // validasi
 $(function () {
@@ -52,7 +58,7 @@ $(function () {
         errorElement: "label",
         errorPlacement: function (e, t) {
             var n = t.parent();
-            var p = t.insertBefore('col-md-4')
+            var p = t.insertBefore('col-md-4');
             n.is(".form-group") ? e.appendTo(n) : e.appendTo(n.parent()),
                 e.addClass("error control-label")
         },
