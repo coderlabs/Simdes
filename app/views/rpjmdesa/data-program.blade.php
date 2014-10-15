@@ -49,13 +49,17 @@
                         </button>
                         <ul class="inbox-pagination">
                             <li><span id="infopage"></span></li>
-                            <button id="awal" disabled="disabled" class="btn btn-sm  btn-white tooltips"  data-original-title="Awal" data-placement="top"><i
+                            <button id="awal" disabled="disabled" class="btn btn-sm  btn-white tooltips"
+                            data-original-title="Awal" data-placement="top"><i
                                     class="fa fa-angle-double-left"></i></button>
-                            <button id="mundur" disabled="disabled" class="btn  btn-sm btn-white tooltips"  data-original-title="Sebelumnya" data-placement="top"><i
+                            <button id="mundur" disabled="disabled" class="btn  btn-sm btn-white tooltips"
+                            data-original-title="Sebelumnya" data-placement="top"><i
                                     class="fa fa-chevron-left"></i></button>
-                            <button id="maju" disabled="disabled" class="btn  btn-sm btn-white tooltips"  data-original-title="Berikutnya" data-placement="top"><i
+                            <button id="maju" disabled="disabled" class="btn  btn-sm btn-white tooltips"
+                            data-original-title="Berikutnya" data-placement="top"><i
                                     class="fa  fa-chevron-right"></i></button>
-                            <button id="akhir" disabled="disabled" class="btn  btn-sm btn-white tooltips"  data-original-title="Akhir" data-placement="top"><i
+                            <button id="akhir" disabled="disabled" class="btn  btn-sm btn-white tooltips"
+                            data-original-title="Akhir" data-placement="top"><i
                                     class="fa  fa-angle-double-right"></i></button>
                         </ul>
                     </div>
@@ -80,8 +84,11 @@
                         {{ Form::label('program_id', 'Program', ['class' => 'col-md-3 control-label']) }}
                         <div class="col-md-6">
                             <div class="input-group m-bot15">
-                                {{ Form::select('program_id', ['' => ''],'',['class' => 'form-control','id' =>
-                                'program_id']) }}
+                                {{ Form::select('program_id', ['' => ''],'',[
+                                'class' => 'form-control tooltips',
+                                'data-original-title' => 'Pilih program sesuai dengan Kewenangan Kepala Desa yang telah ditentukan',
+                                'data-placement' => 'top' ,
+                                ]) }}
                                 <span class="input-group-btn">
                                   <a data-original-title="Tambah Program" href="{{URL::to('data-program-kewenangan')}}"
                                    data-placement="top" class="btn btn-info tooltips" type="button"><i class="fa fa-plus-circle"
@@ -93,33 +100,53 @@
                     <div class="form-group">
                         {{ Form::label('lokasi', 'Lokasi', ['class' => 'col-md-3 control-label']) }}
                         <div class="col-md-6">
-                            {{ Form::text('lokasi', '', ['class' => 'form-control']) }}
+                            {{ Form::text('lokasi', '', [
+                            'class' => 'form-control tooltips',
+                            'data-original-title' => 'Lokasi/lingkungan tempat program yang akan diterapkan',
+                            'data-placement' => 'top' ,
+                            ]) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('sasaran', 'Sasaran', ['class' => 'col-md-3 control-label']) }}
                         <div class="col-md-6">
-                            {{ Form::text('sasaran', '', ['class' => 'form-control']) }}
+                            {{ Form::text('sasaran', '', [
+                            'class' => 'form-control tooltips',
+                            'data-original-title' => 'Sasaran dari program',
+                            'data-placement' => 'top' ,
+                            ]) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('waktu', 'Waktu', ['class' => 'col-md-3 control-label']) }}
                         <div class="col-md-6">
-                            {{ Form::text('waktu', '', ['class' => 'form-control']) }}
+                            {{ Form::text('waktu', '', [
+                            'class' => 'form-control tooltips',
+                            'data-original-title' => 'Waktu yang dibutuhkan untuk melaksanakan program terkait maksimal 6 tahun',
+                            'data-placement' => 'top' ,
+                            ]) }}
                         </div>
                     </div>
 
                     <div class="form-group">
                         {{ Form::label('target', 'Target', ['class' => 'col-md-3 control-label']) }}
                         <div class="col-md-6">
-                            {{ Form::text('target', '', ['class' => 'form-control']) }}
+                            {{ Form::text('target', '', [
+                            'class' => 'form-control tooltips',
+                            'data-original-title' => 'Target dari prgoram',
+                            'data-placement' => 'top' ,
+                            ]) }}
                         </div>
                     </div>
 
                     <div class="form-group">
                         {{ Form::label('tujuan', 'Tujuan', ['class' => 'col-md-3 control-label']) }}
                         <div class="col-md-6">
-                            {{ Form::text('tujuan', '', ['class' => 'form-control']) }}
+                            {{ Form::text('tujuan', '', [
+                            'class' => 'form-control tooltips',
+                            'data-original-title' => 'Tujuan dari program',
+                            'data-placement' => 'top' ,
+                            ]) }}
                         </div>
                     </div>
 
@@ -127,7 +154,13 @@
                         {{ Form::label('sifat', 'Sifat', ['class' => 'col-md-3 control-label']) }}
                         <div class="col-md-6">
                             {{ Form::select('status',['Baru' => "Baru", "Lanjutan" => "Lanjutan",'Rehab' => "Rehab",
-                            "Perluasan" => "Perluasan"],"", ['class' => 'form-control','name' => 'sifat', 'id' => 'sifat']) }}
+                            "Perluasan" => "Perluasan"],"", [
+                            'class' => 'form-control tooltips',
+                            'data-original-title' => 'Sifat program, Baru / Lanjutan dst.',
+                            'data-placement' => 'top' ,
+                            'name' => 'sifat',
+                            'id' => 'sifat'
+                            ]) }}
                         </div>
                     </div>
 
@@ -135,22 +168,32 @@
                     <div class="form-group">
                         {{ Form::label('pagu_anggaran', 'Pagu Anggaran', ['class' => 'col-md-3 control-label']) }}
                         <div class="col-md-6">
-                            {{ Form::text('pagu_anggaran', '', ['class' => 'form-control']) }}
+                            {{ Form::text('pagu_anggaran', '', [
+                            'class' => 'form-control tooltips',
+                            'data-original-title' => 'Pagu anggaran yang dianggarkan untuk program terkait',
+                            'data-placement' => 'top' ,
+                            ]) }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('sumber_dana_id', 'Sumber Dana', ['class' => 'col-md-3 control-label']) }}
                         <div class="col-md-6">
-                            {{ Form::select('sumber_dana_id', ['' => 'Pilih Sumber Dana'],'',['class' =>
-                            'form-control'])
+                            {{ Form::select('sumber_dana_id', ['' => 'Pilih Sumber Dana'],'',[
+                            'class' => 'form-control tooltips',
+                            'data-original-title' => 'Asal sumber dana yang akan dipakai untuk program terkait',
+                            'data-placement' => 'top' ,
+                            ])
                             }}
                         </div>
                     </div>
                     <div class="form-group">
                         {{ Form::label('pejabat_desa_id', 'Penanggung Jawab', ['class' => 'col-md-3 control-label']) }}
                         <div class="col-md-6">
-                            {{ Form::select('pejabat_desa_id', ['' => 'Pilih Penanggung Jawab'],'',['class' =>
-                            'form-control']) }}
+                            {{ Form::select('pejabat_desa_id', ['' => 'Pilih Penanggung Jawab'],'',[
+                            'class' => 'form-control tooltips',
+                            'data-original-title' => 'Perangkat desa yang diberikan wewenang untuk bertanggung jawab dengan progarm terkait',
+                            'data-placement' => 'top' ,
+                            ]) }}
                         </div>
                     </div>
                     <div class="form-group">

@@ -30,13 +30,17 @@
                         </button>
                         <ul class="inbox-pagination">
                             <li><span id="infopage"></span></li>
-                            <button id="awal" disabled="disabled" class="btn btn-sm  btn-white tooltips"  data-original-title="Awal" data-placement="top"><i
+                            <button id="awal" disabled="disabled" class="btn btn-sm  btn-white tooltips"
+                            data-original-title="Awal" data-placement="top"><i
                                     class="fa fa-angle-double-left"></i></button>
-                            <button id="mundur" disabled="disabled" class="btn  btn-sm btn-white tooltips"  data-original-title="Sebelumnya" data-placement="top"><i
+                            <button id="mundur" disabled="disabled" class="btn  btn-sm btn-white tooltips"
+                            data-original-title="Sebelumnya" data-placement="top"><i
                                     class="fa fa-chevron-left"></i></button>
-                            <button id="maju" disabled="disabled" class="btn  btn-sm btn-white tooltips"  data-original-title="Berikutnya" data-placement="top"><i
+                            <button id="maju" disabled="disabled" class="btn  btn-sm btn-white tooltips"
+                            data-original-title="Berikutnya" data-placement="top"><i
                                     class="fa  fa-chevron-right"></i></button>
-                            <button id="akhir" disabled="disabled" class="btn  btn-sm btn-white tooltips"  data-original-title="Akhir" data-placement="top"><i
+                            <button id="akhir" disabled="disabled" class="btn  btn-sm btn-white tooltips"
+                            data-original-title="Akhir" data-placement="top"><i
                                     class="fa  fa-angle-double-right"></i></button>
                         </ul>
                     </div>
@@ -53,7 +57,12 @@
                     <div class="form-group">
                         {{ Form::label('visi', 'Visi', ['class' => 'col-md-3 control-label']) }}
                         <div class="col-md-6">
-                            {{ Form::textarea('visi','', ['class' => 'form-control','rows' => '3']) }}
+                            {{ Form::textarea('visi','', [
+                            'class' => 'form-control tooltips',
+                            'rows' => '3' ,
+                            'data-original-title' => 'Visi Kepala Desa terpilih selama 6 Tahun',
+                            'data-placement' => 'top' ,
+                            ]) }}
                         </div>
                     </div>
                     <div class="form-group">
