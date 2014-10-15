@@ -23,14 +23,10 @@ use Simdes\Services\Forms\RPJMDesa\PemetaanForm;
 class PemetaanRepository extends AbstractRepository implements PemetaanRepositoryInterface
 {
 
-    /**
-     * @param Pemetaan $pemetaan
-     */
     public function __construct(Pemetaan $pemetaan)
     {
         $this->model = $pemetaan;
     }
-
 
     /**
      * @param array $data
@@ -54,7 +50,7 @@ class PemetaanRepository extends AbstractRepository implements PemetaanRepositor
 
     /**
      * @param Pemetaan $pemetaan
-     * @param array $data
+     * @param array    $data
      *
      * @return Pemetaan
      */
@@ -68,6 +64,10 @@ class PemetaanRepository extends AbstractRepository implements PemetaanRepositor
         $pemetaan->pemetaan_5 = $data['pemetaan_5'];
         $pemetaan->jumlah = $this->getJumlah($data['pemetaan_1'], $data['pemetaan_2'], $data['pemetaan_3'], $data['pemetaan_4'], $data['pemetaan_5']);
         $pemetaan->save();
+
+        $pemetaan->masalah()->update([
+            'sekor_pemetaan' => $pemetaan->jumlah
+        ]);
 
         return $pemetaan;
     }

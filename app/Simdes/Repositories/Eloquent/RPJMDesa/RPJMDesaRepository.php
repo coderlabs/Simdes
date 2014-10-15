@@ -69,7 +69,7 @@ class RPJMDesaRepository extends AbstractRepository implements RPJMDesaRepositor
 
     /**
      * @param RPJMDesa $RPJMDesa
-     * @param array $data
+     * @param array    $data
      *
      * @return RPJMDesa
      */
@@ -126,7 +126,11 @@ class RPJMDesaRepository extends AbstractRepository implements RPJMDesaRepositor
      */
     public function findMasalah($id)
     {
-        return $this->model->find($id)->masalah()->get();
+        return $this->model
+            ->find($id)
+            ->masalah()
+            ->orderBy('sekor_pemetaan', 'desc')
+            ->get();
     }
 
     /**
