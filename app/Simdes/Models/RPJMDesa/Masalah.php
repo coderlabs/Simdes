@@ -17,26 +17,27 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @package Simdes\Models\RPJMDesa
  */
-class Masalah extends Model{
-    /**
-     * @var string
-     */
-    protected $table = 'tb_rpjm_masalah';
+class Masalah extends Model
+{
     /**
      * @var bool
      */
     public $timestamps = false;
     /**
+     * @var string
+     */
+    protected $table = 'tb_rpjm_masalah';
+    /**
      * @var array
      */
-    protected $fillable = ['rpjmdesa_id','pemetaan_id','masalah','user_id'];
+    protected $fillable = ['rpjmdesa_id', 'pemetaan_id', 'masalah', 'user_id', 'sekor_pemetaan'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function potensi()
     {
-        return $this->belongsTo('Simdes\Models\RPJMDesa\Potensi','potensi_id');
+        return $this->belongsTo('Simdes\Models\RPJMDesa\Potensi', 'potensi_id');
     }
 
     /**
@@ -44,7 +45,7 @@ class Masalah extends Model{
      */
     public function pemetaan()
     {
-        return $this->belongsTo('Simdes\Models\RPJMDesa\Pemetaan','pemetaan_id');
+        return $this->belongsTo('Simdes\Models\RPJMDesa\Pemetaan', 'pemetaan_id');
     }
 
 
@@ -53,7 +54,7 @@ class Masalah extends Model{
      */
     public function program()
     {
-        return $this->hasMany('RpjmProgram','program_id');
+        return $this->hasMany('Simdes\Models\RPJMDesa\Program', 'program_id');
     }
 
     public function scopeFullTextSearch($query, $q)

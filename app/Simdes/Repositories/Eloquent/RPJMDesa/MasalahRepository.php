@@ -29,7 +29,7 @@ class MasalahRepository extends AbstractRepository implements MasalahRepositoryI
     private $pemetaan;
 
     /**
-     * @param Masalah $masalah
+     * @param Masalah                     $masalah
      * @param PemetaanRepositoryInterface $pemetaan
      */
     public function __construct(Masalah $masalah, PemetaanRepositoryInterface $pemetaan)
@@ -50,10 +50,11 @@ class MasalahRepository extends AbstractRepository implements MasalahRepositoryI
      */
     public function findAll($term, $rpjmdesa_id, $organisasi_id)
     {
-        return $this->model->orderBy('id')
+        return $this->model
             ->FullTextSearch($term)
             ->where('rpjmdesa_id', '=', $rpjmdesa_id)
             ->where('organisasi_id', '=', $organisasi_id)
+            ->orderBy('sekor_pemetaan', 'desc')
             ->paginate(10);
     }
 
@@ -109,7 +110,7 @@ class MasalahRepository extends AbstractRepository implements MasalahRepositoryI
 
     /**
      * @param Masalah $masalah
-     * @param array $data
+     * @param array   $data
      *
      * @return Masalah
      */
@@ -121,11 +122,18 @@ class MasalahRepository extends AbstractRepository implements MasalahRepositoryI
         return $masalah;
     }
 
+    public function findByIdPemetaan($pemetaan_id)
+    {
+        return $this->model
+            ->where('pemetaan_id', '=', $pemetaan_id)
+            ->first();
+    }
+
     /**
      * Update data Masalah
      *
      * @param Masalah $masalah
-     * @param array $data
+     * @param array   $data
      *
      * @return Masalah
      */

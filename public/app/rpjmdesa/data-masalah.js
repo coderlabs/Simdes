@@ -73,8 +73,11 @@ function resultData(data) {
         $("#datalist").append("<tr><td colspan='" + $("tbody > tr > th").length + "'>Data kosong.</td></tr>");
     } else {
         $.each(obj[6], function (index, val) {
+            var skor = (val.sekor_pemetaan == null) ? "0" : val.sekor_pemetaan;
+
             $("#datalist").append(
                 "<tr><td>" + val.masalah +
+                "<td>" + skor +
                 "</td><td><div class='btn-toolbar'>" +
                 "<a href='" + url_potensi + "/" + val.id + "'  title='Potensi' class='btn btn-sm btn-default'><i class=' fa fa-building-o' ></i></a>" +
                 "<a href='" + url_pemetaan + "/" + val.pemetaan_id + "'  title='Pemetaan' class='btn btn-sm btn-default'><i class=' fa fa-th-list' ></i></a>" +

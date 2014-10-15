@@ -41,6 +41,8 @@ interface MasalahRepositoryInterface {
      */
     public function findById($id);
 
+    public function findByIdPemetaan($pemetaan_id);
+
 
     /**
      * @param Masalah $masalah

@@ -88,7 +88,8 @@
                              <table class="table table-striped table-condensed cf">
                                  <thead class="cf">
                                     <tr>
-                                        <th class="col-md-8">Masalah</th>
+                                        <th class="col-md-7">Masalah</th>
+                                        <th class="col-md-1">Skor</th>
                                         <th class="col-md-4">Aksi</th>
                                     </tr>
                                 </thead>
@@ -97,10 +98,17 @@
                                       <tr>
                                           <td>{{$dt->masalah}}</td>
                                           <td>
+                                          @if(0 == $dt->sekor_pemetaan)
+                                          0
+                                          @else
+                                          {{$dt->sekor_pemetaan}}
+                                          @endif
+                                          </td>
+                                          <td>
                                               <div class='btn-toolbar'>
-                                              <a href="{{URL::to('data-potensi').'/'.$dt->id }}" class="btn btn-sm btn-default"><i class="fa fa-building-o"></i></a>
-                                              <a href="{{URL::to('data-pemetaan').'/'.$dt->id }}" class="btn btn-sm btn-default"><i class="fa fa-list-ol"></i></a>
-                                              <a href="{{URL::to('data-program').'/'.$dt->id }}" class="btn btn-sm btn-default"><i class="fa fa-laptop"></i></a>
+                                              <a title="Potensi" href="{{URL::to('data-potensi').'/'.$dt->id }}" class="btn btn-sm btn-default"><i class="fa fa-building-o"></i></a>
+                                              <a title="Pemetaan" href="{{URL::to('data-pemetaan').'/'.$dt->id }}" class="btn btn-sm btn-default"><i class="fa fa-list-ol"></i></a>
+                                              <a title="Program" href="{{URL::to('data-program').'/'.$dt->id }}" class="btn btn-sm btn-default"><i class="fa fa-laptop"></i></a>
                                                   <button class="btn btn-sm btn-default"
                                                           onclick="EditData({{$dt->id}})"><i class="fa fa-edit"></i></button>
                                                           <button class="btn btn-sm btn-danger" onclick="HapusData({{$dt->
