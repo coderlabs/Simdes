@@ -71,15 +71,6 @@ Route::filter('guest', function () {
     }
 });
 
-
-Route::filter('no-cache',function($route, $request, $response){
-
-    $response->header->set("Cache-Control","no-cache,no-store, must-revalidate");
-    $response->header->set("Pragma", "no-cache"); //HTTP 1.0
-    $response->header->set("Expires"," Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
-
-});
-
 /*
 |--------------------------------------------------------------------------
 | Guest Filter
