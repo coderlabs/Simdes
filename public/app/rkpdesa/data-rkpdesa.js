@@ -307,8 +307,7 @@ function UpdateData() {
         data: '_method=put&' + $("#myForm").serialize()
     }).done(function (data) {
         CekAuth(data);
-        $("#alert-notify").show();
-        $("#alert-notify").html("");
+        $("#alert-notify").show().html("");
         switch (data.Status) {
             case "Sukses":
                 resultSuccess(data);

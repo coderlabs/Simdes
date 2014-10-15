@@ -8,7 +8,6 @@
 
 namespace RPJMDesa;
 
-use Barryvdh\DomPDF\PDF;
 use RKA\RKAController;
 use Simdes\Repositories\Organisasi\OrganisasiRepositoryInterface;
 use Simdes\Repositories\Pejabat\PejabatDesaRepositoryInterface;
