@@ -20,13 +20,13 @@ use Illuminate\Database\Eloquent\Model;
 class RPJMDesa extends Model
 {
     /**
-     * @var string
-     */
-    protected $table = 'tb_rpjmdesa';
-    /**
      * @var bool
      */
     public $timestamps = false;
+    /**
+     * @var string
+     */
+    protected $table = 'tb_rpjmdesa';
     /**
      * @var array
      */
