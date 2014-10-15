@@ -65,10 +65,16 @@
                                         <td>
                                             {{$no_masalah++}}
                                         </td>
-                                        <td class="col-md-12">
+                                        <td class="col-md-10">
                                             <a data-original-title="Detil Masalah" data-placement="top"
                                                class="tooltips" href="{{URL::to('detil-masalah').'/'.$dt->id}}">
                                                 {{$dt->masalah}}
+                                            </a>
+                                        </td>
+                                        <td class="col-md-2">
+                                            <a data-original-title="Skor Pemetaan {{$dt->sekor_pemetaan}}" data-placement="top"
+                                               class="tooltips" href="javascript:;">
+                                                {{$dt->sekor_pemetaan}}
                                             </a>
                                         </td>
                                     </tr>
