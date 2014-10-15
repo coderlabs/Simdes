@@ -320,7 +320,7 @@ function TombolTambah() {
     // show
     $("#myForm").show();
     // focused
-    $("#program").focus();
+    $("#program_id").focus();
 }
 // validasi
 $(function () {
