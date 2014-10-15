@@ -175,7 +175,9 @@ class FungsiRepository extends AbstractRepository implements FungsiRepositoryInt
      */
     public function getList()
     {
-        return $this->model->get(['id', 'fungsi', 'kode_rekening']);
+        return $this->model
+            ->remember(2)
+            ->get(['id', 'fungsi', 'kode_rekening']);
     }
 
 }

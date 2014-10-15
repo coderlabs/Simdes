@@ -190,6 +190,7 @@ class ProgramRepository extends AbstractRepository implements ProgramRepositoryI
             ->where('organisasi_id', '=', $organisasi_id)
             ->orWhere('organisasi_id', '=', 43)
             ->where('bidang_id', '=', $bidang_id)
+            ->remember(2)
             ->get(['id', 'program', 'kode_rekening']);
     }
 
@@ -202,6 +203,7 @@ class ProgramRepository extends AbstractRepository implements ProgramRepositoryI
         return $this->model
             ->where('organisasi_id', '=', $organisasi_id)
             ->orWhere('organisasi_id', '=', 43)
+            ->remember(2)
             ->get(['id', 'program', 'kode_rekening']);
     }
 

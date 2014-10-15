@@ -139,7 +139,10 @@ class RincianObyekRepository extends AbstractRepository implements RincianObyekR
      */
     public function findByIdObyek($obyek_id)
     {
-        return $this->model->where('obyek_id', '=', $obyek_id)->get(['id', 'rincian_obyek']);
+        return $this->model
+            ->where('obyek_id', '=', $obyek_id)
+            ->remember(2)
+            ->get(['id', 'rincian_obyek']);
     }
 
     /**

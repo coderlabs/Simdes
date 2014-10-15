@@ -51,9 +51,11 @@ class VisiRepository extends AbstractRepository implements VisiRepositoryInterfa
      */
     public function findAll($term, $organisasi_id)
     {
-        return $this->model->orderBy('id')
+        return $this->model
+            ->orderBy('id')
             ->FullTextSearch($term)
             ->where('organisasi_id', '=', $organisasi_id)
+            ->remember(10)
             ->paginate(10);
     }
 
@@ -97,7 +99,7 @@ class VisiRepository extends AbstractRepository implements VisiRepositoryInterfa
      */
     public function findById($id)
     {
-        return $this->model->find($id);
+        return $this->model->find($id)->remember(10);
     }
 
     /**

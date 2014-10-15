@@ -41,6 +41,10 @@ interface MasalahRepositoryInterface {
      */
     public function findById($id);
 
+    /**
+     * @param $pemetaan_id
+     * @return mixed
+     */
     public function findByIdPemetaan($pemetaan_id);
 
 

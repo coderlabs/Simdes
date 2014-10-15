@@ -46,7 +46,7 @@ interface RPJMDesaRepositoryInterface
 
     /**
      * @param RPJMDesa $RPJMDesa
-     * @param array $data
+     * @param array    $data
      *
      * @return mixed
      */
@@ -68,20 +68,6 @@ interface RPJMDesaRepositoryInterface
      * @return mixed
      */
     public function getEditForm();
-
-    /**
-     * @param $id
-     *
-     * @return mixed
-     */
-    public function findMasalah($id);
-
-    /**
-     * @param $id
-     *
-     * @return mixed
-     */
-    public function findMisi($id);
 
     /**
      * Get data Filter by organisasi_id dan id

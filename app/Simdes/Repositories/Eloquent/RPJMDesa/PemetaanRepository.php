@@ -129,7 +129,10 @@ class PemetaanRepository extends AbstractRepository implements PemetaanRepositor
      */
     public function findByFilter($id, $organisasi_id)
     {
-        return $this->model->where('id', '=', $id)->where('organisasi_id', '=', $organisasi_id)->first();
+        return $this->model
+            ->where('id', '=', $id)
+            ->where('organisasi_id', '=', $organisasi_id)
+            ->first();
     }
 
 }

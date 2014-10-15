@@ -30,7 +30,6 @@ class RPJMDesaRepository extends AbstractRepository implements RPJMDesaRepositor
         $this->model = $RPJMDesa;
     }
 
-
     /**
      * @param $term
      * @param $user_id
@@ -40,9 +39,11 @@ class RPJMDesaRepository extends AbstractRepository implements RPJMDesaRepositor
      */
     public function findAll($term, $user_id, $organisasi_id)
     {
-        $RPJMDesa = $this->model->orderBy('visi_id', 'desc')
+        $RPJMDesa = $this->model
+            ->orderBy('visi_id', 'desc')
             ->where('user_id', '=', $user_id)
             ->where('organisasi_id', '=', $organisasi_id)
+            ->remember(10)
             ->paginate(10);
 
         return $RPJMDesa;
@@ -118,31 +119,6 @@ class RPJMDesaRepository extends AbstractRepository implements RPJMDesaRepositor
         return new RPJMDesaEditForm();
     }
 
-
-    /**
-     * @param $id
-     *
-     * @return mixed
-     */
-    public function findMasalah($id)
-    {
-        return $this->model
-            ->find($id)
-            ->masalah()
-            ->orderBy('sekor_pemetaan', 'desc')
-            ->get();
-    }
-
-    /**
-     * @param $id
-     *
-     * @return mixed
-     */
-    public function findMisi($id)
-    {
-        return $this->model->find($id)->misi()->get();
-    }
-
     /**
      * Get data filter by organisasi_id dan id
      *
@@ -153,19 +129,25 @@ class RPJMDesaRepository extends AbstractRepository implements RPJMDesaRepositor
      */
     public function findByFilter($id, $organisasi_id)
     {
-        return $this->model->where('id', '=', $id)->where('organisasi_id', '=', $organisasi_id)->first();
+        return $this->model
+            ->where('id', '=', $id)
+            ->where('organisasi_id', '=', $organisasi_id)
+            ->first();
     }
 
     /**
      * Get Program untuk dropdown
-     * diakses oleh KPDesa
+     * diakses oleh RKPDesa
      *
      * @param $organisasi_id
      * @return mixed
      */
     public function getListProgram($organisasi_id)
     {
-        return $this->model->where('organisasi_id', '=', $organisasi_id)->get(['id', 'program']);
+        return $this->model
+            ->where('organisasi_id', '=', $organisasi_id)
+            ->remember(10)
+            ->get(['id', 'program']);
     }
 
 }

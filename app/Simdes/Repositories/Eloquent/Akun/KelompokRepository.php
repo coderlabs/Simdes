@@ -128,7 +128,10 @@ class KelompokRepository extends AbstractRepository implements KelompokRepositor
      */
     public function findbyIdAkun($akun_id)
     {
-        return $this->model->where('akun_id', '=', $akun_id)->get(['id', 'kelompok']);
+        return $this->model
+            ->where('akun_id', '=', $akun_id)
+            ->remember(2)
+            ->get(['id', 'kelompok']);
     }
 
     /**
@@ -166,7 +169,9 @@ class KelompokRepository extends AbstractRepository implements KelompokRepositor
      */
     public function getList()
     {
-        return $this->model->get(['id', 'kelompok', 'kode_rekening']);
+        return $this->model
+            ->remember(2)
+            ->get(['id', 'kelompok', 'kode_rekening']);
     }
 
     /**

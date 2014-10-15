@@ -42,10 +42,12 @@ class MisiRepository extends AbstractRepository implements MisiRepositoryInterfa
      */
     public function findAll($term, $rpjmdesa_id, $organisasi_id)
     {
-        return $this->model->orderBy('id')
+        return $this->model
+            ->orderBy('id')
             ->FullTextSearch($term)
             ->where('rpjmdesa_id', '=', $rpjmdesa_id)
             ->where('organisasi_id', '=', $organisasi_id)
+            ->remember(10)
             ->paginate(10);
     }
 
@@ -68,7 +70,7 @@ class MisiRepository extends AbstractRepository implements MisiRepositoryInterfa
     }
 
     /**
-     * @param Misi $misi
+     * @param Misi  $misi
      * @param array $data
      *
      * @return Misi

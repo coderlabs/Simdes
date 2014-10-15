@@ -171,7 +171,10 @@ class ObyekRepository extends AbstractRepository implements ObyekRepositoryInter
      */
     public function findByIdJenis($jenis_id)
     {
-        return $this->model->where('jenis_id', '=', $jenis_id)->get(['id', 'obyek']);
+        return $this->model
+            ->where('jenis_id', '=', $jenis_id)
+            ->remember(2)
+            ->get(['id', 'obyek']);
     }
 
     /**
@@ -212,6 +215,7 @@ class ObyekRepository extends AbstractRepository implements ObyekRepositoryInter
     {
         return $this->model
             ->whereIn('organisasi_id', [$organisasi_id, 43])
+            ->remember(2)
             ->get(['id', 'obyek','kode_rekening']);
     }
 

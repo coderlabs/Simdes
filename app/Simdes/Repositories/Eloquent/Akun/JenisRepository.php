@@ -138,7 +138,10 @@ class JenisRepository extends AbstractRepository implements JenisRepositoryInter
      */
     public function findByIdKelompok($kelompok_id)
     {
-        return $this->model->where('kelompok_id', '=', $kelompok_id)->get(['id', 'jenis']);
+        return $this->model
+            ->where('kelompok_id', '=', $kelompok_id)
+            ->remember(2)
+            ->get(['id', 'jenis']);
     }
 
     /**
@@ -173,7 +176,9 @@ class JenisRepository extends AbstractRepository implements JenisRepositoryInter
      */
     public function getList()
     {
-        return $this->model->get(['id', 'jenis', 'kode_rekening']);
+        return $this->model
+            ->remember(2)
+            ->get(['id', 'jenis', 'kode_rekening']);
     }
 
     /**

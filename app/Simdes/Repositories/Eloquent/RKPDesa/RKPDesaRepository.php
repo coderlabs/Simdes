@@ -313,7 +313,9 @@ class RKPDesaRepository extends AbstractRepository implements RKPDesaRepositoryI
      */
     public function getListKegiatan()
     {
-        return $this->model->get(['kegiatan_id as id', 'kegiatan', 'rpjmdesa_id', 'pagu_anggaran']);
+        return $this->model
+            ->remember(2)
+            ->get(['kegiatan_id as id', 'kegiatan', 'rpjmdesa_id', 'pagu_anggaran']);
     }
 
     /**

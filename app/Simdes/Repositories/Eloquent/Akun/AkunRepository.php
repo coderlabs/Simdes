@@ -72,7 +72,7 @@ class AkunRepository extends AbstractRepository implements AkunRepositoryInterfa
     /**
      * update data Akun berdasarkan $id
      *
-     * @param Akun $akun
+     * @param Akun  $akun
      * @param array $data
      *
      * @return Akun
@@ -166,8 +166,8 @@ class AkunRepository extends AbstractRepository implements AkunRepositoryInterfa
      */
     public function findByFilter($id, $organisasi_id)
     {
-        return $this->model->where('id', '=', $id)
-//                ->where('organisasi_id', '=', $organisasi_id)
+        return $this->model
+            ->where('id', '=', $id)
             ->first();
     }
 
@@ -176,6 +176,8 @@ class AkunRepository extends AbstractRepository implements AkunRepositoryInterfa
      */
     public function getList()
     {
-        return $this->model->get(['id', 'akun', 'kode_rekening']);
+        return $this->model
+            ->remember(2)
+            ->get(['id', 'akun', 'kode_rekening']);
     }
 }

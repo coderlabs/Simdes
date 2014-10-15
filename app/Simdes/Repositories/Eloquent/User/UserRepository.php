@@ -50,10 +50,10 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     private $event;
 
     /**
-     * @param User $user
+     * @param User                          $user
      * @param OrganisasiRepositoryInterface $organisasi
-     * @param AuthManager $auth
-     * @param Dispatcher $event
+     * @param AuthManager                   $auth
+     * @param Dispatcher                    $event
      */
     public function __construct(
         User $user,
@@ -80,9 +80,9 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         return $this->model
             ->FullTextSearch($term)
             ->where('organisasi_id', '=', $organisasi_id)
-            ->orderBy('id','desc')
+            ->orderBy('id', 'desc')
             ->remember(10)
-            ->paginate(10,['id','name','email','is_admin','is_demo','is_active']);
+            ->paginate(10, ['id', 'name', 'email', 'is_admin', 'is_demo', 'is_active']);
     }
 
     /**
@@ -102,8 +102,8 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             // order by id user terakhir mendaftar
             ->orderBy('id', 'desc')
             // save cache
-//            ->remember(10)
-            ->paginate(10,['id','name','email','is_admin','organisasi_id','is_demo','is_active']);
+            //            ->remember(10)
+            ->paginate(10, ['id', 'name', 'email', 'is_admin', 'organisasi_id', 'is_demo', 'is_active']);
     }
 
     /**
@@ -115,6 +115,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         // jadikan akun ini demo, diaktifkan oleh bakcoffice
         $user->is_demo = 1;
         $user->save();
+
         return $user;
 
     }
@@ -128,6 +129,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         // jadikan akun tidak demo, akun bisa digunakan
         $user->is_demo = 0;
         $user->save();
+
         return $user;
     }
 
@@ -140,6 +142,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         // jadikan akun active
         $user->is_active = 2;
         $user->save();
+
         return $user;
     }
 
@@ -152,6 +155,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         // jadikan akun not active
         $user->is_active = 1;
         $user->save();
+
         return $user;
     }
 
@@ -247,7 +251,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 
 
     /**
-     * @param User $user
+     * @param User  $user
      * @param array $data
      * @return User
      */
@@ -353,7 +357,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     }
 
     /**
-     * @param User $user
+     * @param User  $user
      * @param array $data
      * @return User
      */
@@ -361,6 +365,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     {
         $user->is_pejabat = 1;
         $user->save();
+
         return $user;
     }
 
@@ -494,11 +499,12 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
 
         // event listen untuk mengirimkan email
         $this->event->fire('user.create', $user);
+
         return $user;
     }
 
     /**
-     * @param User $user
+     * @param User  $user
      * @param array $data
      * @return User
      */
@@ -521,7 +527,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     }
 
     /**
-     * @param User $user
+     * @param User  $user
      * @param array $data
      * @return User
      */
@@ -535,7 +541,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     }
 
     /**
-     * @param User $user
+     * @param User  $user
      * @param array $data
      * @return User
      */
@@ -586,7 +592,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     }
 
     /**
-     * @param User $user
+     * @param User  $user
      * @param array $data
      * @return User
      */

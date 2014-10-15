@@ -30,7 +30,7 @@ class ProgramRepository extends AbstractRepository implements ProgramRepositoyIn
     private $progamKewenangan;
 
     /**
-     * @param Program $program
+     * @param Program                    $program
      * @param ProgramRepositoryInterface $progamKewenangan
      */
     public function __construct(Program $program, ProgramRepositoryInterface $progamKewenangan)
@@ -38,7 +38,6 @@ class ProgramRepository extends AbstractRepository implements ProgramRepositoyIn
         $this->model = $program;
         $this->progamKewenangan = $progamKewenangan;
     }
-
 
     /**
      * Menampilkan data list program
@@ -57,6 +56,7 @@ class ProgramRepository extends AbstractRepository implements ProgramRepositoyIn
             ->where('masalah_id', '=', $masalah_id)
             ->where('organisasi_id', '=', $organisasi_id)
             ->with('program')
+            ->remember(10)
             ->paginate(10);
     }
 
@@ -66,6 +66,7 @@ class ProgramRepository extends AbstractRepository implements ProgramRepositoyIn
             ->FullTextSearch($term)
             ->where('organisasi_id', '=', $organisasi_id)
             ->with('program')
+            ->remember(10)
             ->paginate(10);
     }
 
@@ -166,6 +167,7 @@ class ProgramRepository extends AbstractRepository implements ProgramRepositoyIn
     {
         return $this->model
             ->where('organisasi_id', '=', $organisasi_id)
+            ->remember(10)
             ->get([
                 'rpjmdesa_id',
                 'program_id as id',
@@ -182,7 +184,7 @@ class ProgramRepository extends AbstractRepository implements ProgramRepositoyIn
 
     /**
      * @param Program $program
-     * @param array $data
+     * @param array   $data
      *
      * @return Program
      */
@@ -238,13 +240,15 @@ class ProgramRepository extends AbstractRepository implements ProgramRepositoyIn
     {
         return $this->model->find($id);
     }
-    public function findByOrganisasi_id($id,$organisasi_id)
+
+    public function findByOrganisasi_id($id, $organisasi_id)
     {
         return $this->model
-            ->where('id','=',$id)
-            ->where('organisasi_id','=',$organisasi_id)
+            ->where('id', '=', $id)
+            ->where('organisasi_id', '=', $organisasi_id)
             ->first();
     }
+
     /**
      * @return ProgramForm
      */
@@ -272,6 +276,7 @@ class ProgramRepository extends AbstractRepository implements ProgramRepositoyIn
     {
         return $this->model
             ->where('organisasi_id', '=', $organisasi_id)
+            ->remember(10)
             ->get(['rpjmdesa_id', 'program_id as id', 'program']);
     }
 

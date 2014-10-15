@@ -157,6 +157,7 @@ class KegiatanRepository extends AbstractRepository implements KegiatanRepositor
     {
         return $this->model
             ->where('organisasi_id', '=', $organisasi_id)
+            ->remember(2)
             ->all(['id', 'kegiatan']);
     }
 
@@ -172,6 +173,7 @@ class KegiatanRepository extends AbstractRepository implements KegiatanRepositor
         return $this->model
             ->where('organisasi_id', '=', $organisasi_id)
             ->where('program_id', '=', $program_id)
+            ->remember(2)
             ->get(['id', 'kegiatan']);
     }
 

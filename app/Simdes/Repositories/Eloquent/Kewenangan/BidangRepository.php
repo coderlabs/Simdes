@@ -154,7 +154,10 @@ class BidangRepository extends AbstractRepository implements BidangRepositoryInt
      */
     public function getList($fungsi_id)
     {
-        return $this->model->where('fungsi_id', '=', $fungsi_id)->get(['id', 'bidang', 'kode_rekening']);
+        return $this->model
+            ->where('fungsi_id', '=', $fungsi_id)
+            ->remember(2)
+            ->get(['id', 'bidang', 'kode_rekening']);
     }
 
     /**

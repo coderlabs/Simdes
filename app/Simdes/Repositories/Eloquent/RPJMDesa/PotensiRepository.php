@@ -47,6 +47,7 @@ class PotensiRepository extends AbstractRepository implements PotensiRepositoryI
             ->FullTextSearch($term)
             ->where('masalah_id', '=', $masalah_id)
             ->where('organisasi_id', '=', $organisasi_id)
+            ->remember(10)
             ->paginate(10);
     }
 

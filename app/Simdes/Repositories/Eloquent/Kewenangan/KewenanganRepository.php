@@ -135,7 +135,9 @@ class KewenanganRepository extends AbstractRepository implements KewenanganRepos
      */
     public function getList()
     {
-        return $this->model->all(['id', 'kewenangan', 'kode_rekening']);
+        return $this->model
+            ->remember(2)
+            ->all(['id', 'kewenangan', 'kode_rekening']);
     }
 
    
