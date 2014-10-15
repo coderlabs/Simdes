@@ -40,6 +40,28 @@ class BaseController extends Controller
     }
 
     /**
+     * method untuk konversi tanggal MySql
+     * menjadi tanggal indonesia output
+     * dari tanggal  : 2 Agustus 2014
+     *
+     * @param $date
+     *
+     * @return string
+     */
+    public function dateIndonesia($date)
+    {
+        $BulanIndo = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+
+        $tahun = substr($date, 0, 4);
+        $bulan = substr($date, 5, 2);
+        $tgl = substr($date, 8, 2);
+
+        $result = $tgl . " " . $BulanIndo[(int)$bulan - 1] . " " . $tahun;
+
+        return ($result);
+    }
+
+    /**
      * Setup the layout used by the controller.
      *
      * @return void
@@ -55,7 +77,7 @@ class BaseController extends Controller
      * Set the specified view as content on the layout.
      *
      * @param  string $path
-     * @param  array $data
+     * @param  array  $data
      * @return void
      */
     protected function view($path, $data = [])
@@ -78,8 +100,8 @@ class BaseController extends Controller
      * Redirect to the specified named route.
      *
      * @param  string $route
-     * @param  array $params
-     * @param  array $data
+     * @param  array  $params
+     * @param  array  $data
      * @return \Illuminate\Http\RedirectResponse
      */
     protected function redirectRoute($route, $params = [], $data = [])
@@ -116,27 +138,5 @@ class BaseController extends Controller
     protected function redirectIntended($default = null)
     {
         return Redirect::intended($default);
-    }
-
-    /**
-     * method untuk konversi tanggal MySql
-     * menjadi tanggal indonesia output
-     * dari tanggal  : 2 Agustus 2014
-     *
-     * @param $date
-     *
-     * @return string
-     */
-    public function dateIndonesia($date)
-    {
-        $BulanIndo = array("Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
-
-        $tahun = substr($date, 0, 4);
-        $bulan = substr($date, 5, 2);
-        $tgl = substr($date, 8, 2);
-
-        $result = $tgl . " " . $BulanIndo[(int)$bulan - 1] . " " . $tahun;
-
-        return ($result);
     }
 }
