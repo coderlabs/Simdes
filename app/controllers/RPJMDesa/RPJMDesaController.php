@@ -38,10 +38,10 @@ class RPJMDesaController extends \BaseController
     private $masalah;
 
     /**
-     * @param VisiRepositoryInterface $visi
+     * @param VisiRepositoryInterface     $visi
      * @param RPJMDesaRepositoryInterface $RPJMDesa
-     * @param MasalahRepositoryInterface $masalah
-     * @param UserRepositoryInterface $auth
+     * @param MasalahRepositoryInterface  $masalah
+     * @param UserRepositoryInterface     $auth
      */
     function __construct(
         VisiRepositoryInterface $visi,
@@ -74,6 +74,7 @@ class RPJMDesaController extends \BaseController
     public function read()
     {
         $term = $this->input('term');
+
         return $this->visi->findAll($term, $this->auth->getOrganisasiId());
     }
 
@@ -129,6 +130,7 @@ class RPJMDesaController extends \BaseController
 
         if (!$form->isValid()) {
             $message = $form->getErrors();
+
             return [
                 'Status'     => 'Validation',
                 'validation' => [
@@ -168,8 +170,8 @@ class RPJMDesaController extends \BaseController
         if (is_null($data)) {
             return $this->redirectURLTo('data-rpjmdesa');
         } else {
-            $data_masalah = $this->RPJMDesa->findMasalah($id);
-            $data_misi = $this->RPJMDesa->findMisi($id);
+            $data_masalah = $data->masalah;
+            $data_misi = $data->misi;
             $no_misi = 1;
             $no_masalah = 1;
 
