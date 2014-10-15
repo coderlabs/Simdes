@@ -198,10 +198,10 @@ function ErrorSpinner() {
 }
 // loading
 function OpenLoading() {
-    $("#maju").attr('disabled','disabled');
-    $("#mundur").attr('disabled','disabled');
-    $("#awal").attr('disabled','disabled');
-    $("#akhir").attr('disabled','disabled');
+    $("#maju").attr('disabled', 'disabled');
+    $("#mundur").attr('disabled', 'disabled');
+    $("#awal").attr('disabled', 'disabled');
+    $("#akhir").attr('disabled', 'disabled');
     $("#refreshing-lg").fadeIn('slow');
     $("#refreshing-xs").fadeIn('slow');
 }
@@ -311,7 +311,8 @@ function resultSuccess(data) {
     $("#btn-simpan").removeAttr('disabled');
     CloseSpinner();
     $("#datalist").html("");
-    $("#alert-notify").removeClass('alert-danger')
+    $("#alert-notify")
+        .removeClass('alert-danger')
         .addClass('alert-success')
         .append("<ul style='margin-bottom: 0px;'>" + data.msg + "</ul>")
         .fadeOut(5000);
