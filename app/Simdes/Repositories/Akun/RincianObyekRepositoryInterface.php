@@ -69,9 +69,19 @@ interface RincianObyekRepositoryInterface {
      */
     public function findByFilter($id,$organisasi_id);
 
+    /**
+     * @return mixed
+     */
     public function getCreationForm();
 
+    /**
+     * @return mixed
+     */
     public function getEditForm();
 
+    /**
+     * @param $obyek_id
+     * @return mixed
+     */
     public function findIsExists($obyek_id);
 } 

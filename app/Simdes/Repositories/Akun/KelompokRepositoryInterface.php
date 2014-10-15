@@ -79,8 +79,15 @@ interface KelompokRepositoryInterface
      */
     public function getCreationForm();
 
+    /**
+     * @return mixed
+     */
     public function getList();
 
+    /**
+     * @param $akun_id
+     * @return mixed
+     */
     public function findIsExists($akun_id);
 
 }

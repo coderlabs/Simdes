@@ -84,5 +84,9 @@ interface JenisRepositoryInterface
      */
     public function getList();
 
+    /**
+     * @param $kelompok_id
+     * @return mixed
+     */
     public function findIsExists($kelompok_id);
 }
