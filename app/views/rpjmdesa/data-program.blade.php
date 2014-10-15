@@ -79,8 +79,15 @@
                     <div class="form-group">
                         {{ Form::label('program_id', 'Program', ['class' => 'col-md-3 control-label']) }}
                         <div class="col-md-6">
-                            {{ Form::select('program_id', ['' => ''],'',['class' => 'form-control','id' =>
-                            'program_id']) }}
+                            <div class="input-group m-bot15">
+                                {{ Form::select('program_id', ['' => ''],'',['class' => 'form-control','id' =>
+                                'program_id']) }}
+                                <span class="input-group-btn">
+                                  <a data-original-title="Tambah Program" href="{{URL::to('data-program-kewenangan')}}"
+                                   data-placement="top" class="btn btn-info tooltips" type="button"><i class="fa fa-plus-circle"
+                                   ></i></a>
+                                </span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
