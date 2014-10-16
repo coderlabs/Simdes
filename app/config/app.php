@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return array(
     |
     */
 
-    'providers' => array(
+    'providers' => [
 
         'Illuminate\Foundation\Providers\ArtisanServiceProvider',
         'Illuminate\Auth\AuthServiceProvider',
@@ -123,7 +123,7 @@ return array(
         // laravel auto presenter by Shawn McCool
         'McCool\LaravelAutoPresenter\LaravelAutoPresenterServiceProvider',
 
-    ),
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -149,7 +149,7 @@ return array(
     |
     */
 
-    'aliases'   => array(
+    'aliases'   => [
 
         'App'         => 'Illuminate\Support\Facades\App',
         'Artisan'     => 'Illuminate\Support\Facades\Artisan',
@@ -196,6 +196,6 @@ return array(
         // image prosessor by intervention
         'Image'       => 'Intervention\Image\Facades\Image'
 
-    ),
+    ],
 
-);
+];

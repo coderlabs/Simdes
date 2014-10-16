@@ -32,7 +32,6 @@ class BaseController extends Controller
     /**
      * Create a new BaseController instance.
      *
-     * @return void
      */
     public function __construct()
     {

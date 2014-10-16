@@ -17,10 +17,7 @@ App::before(function ($request) {
 
 
 App::after(function ($request, $response) {
-    // Mencegah Kembali Login Setelah Logout dengan Menekan Tombol Back pada Browser
-//    $response->headers->set("Cache-Control","no-cache,no-store, must-revalidate");
-//    $response->headers->set("Pragma", "no-cache"); //HTTP 1.0
-//    $response->headers->set("Expires"," Sat, 26 Jul 1997 05:00:00 GMT"); // Date in the past
+    //
 });
 
 /*
@@ -47,18 +44,21 @@ Route::filter('auth', function () {
                 'msg'    => 'Session anda telah habis, silahkan login kembali.',
             ];
         }
+
         return Redirect::route('auth.login')->with([
             'message' => 'Session anda telah habis, silahkan login kembali.'
         ]);
     } elseif (Auth::user()->is_demo != 0) {
         // is_demo 0 berarti akun aktif dan tidak demo
         Auth::logout();
+
         return Redirect::route('auth.login')->with([
             'message' => 'Akun yang anda miliki hanya untuk pelatihan, hubungi <a href="mailto:info@simdes-bbpmd.com" target="_blank">info@simdes-bbpmd.com</a>'
         ]);
     } elseif (Auth::user()->is_active != 2) {
         // is_active 2 berarti akun aktif
         Auth::logout();
+
         return Redirect::route('auth.login')->with([
             'message' => 'Akun anda belum diaktifkan, periksa email anda untuk melakukan aktivasi.'
         ]);
@@ -83,7 +83,8 @@ Route::filter('guest', function () {
 */
 
 Route::filter('guest', function () {
-    if (Auth::check()) return Redirect::route('auth.login');
+    if (Auth::check())
+        return Redirect::route('auth.login');
 });
 
 /*
@@ -100,6 +101,7 @@ Route::filter('guest', function () {
 Route::filter('csrf', function () {
     if (Session::token() != Input::get('_token')) {
         Auth::logout();
+
         return [
             'Status' => 'Warning',
             'Action' => 'Logout',
@@ -173,7 +175,7 @@ Route::filter('rpjmdesa', function () {
 
 // Menu standar satuan harga diakses oleh semua perangkat
 Route::filter('perangkat', function () {
-    if (Auth::user()->is_admin != 1 && Auth::user()->is_admin != 2 && Auth::user()->is_admin != 3 && Auth::user()->is_admin != 4  && Auth::user()->is_admin != 5  && Auth::user()->is_admin != 6) {
+    if (Auth::user()->is_admin != 1 && Auth::user()->is_admin != 2 && Auth::user()->is_admin != 3 && Auth::user()->is_admin != 4 && Auth::user()->is_admin != 5 && Auth::user()->is_admin != 6) {
         return Redirect::to('dashboard')->with(
             ['message' => '<b>Standar Satuan Harga</b>, silahkan hubungi sistem administrator anda.']
         );

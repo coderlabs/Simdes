@@ -98,13 +98,13 @@ Route::group(['before' => 'auth', 'namespace' => 'Profile'], function () {
 // before filter back office = ini hanya bisa diakses oleh administrator
 // dengan is_admin = 100 yang artinya dia adalah pengelola sistem
 Route::group(['before' => ['auth', 'backoffice'], 'namespace' => 'Akun'], function () {
-# Akun
+    # Akun
     Route::resource('data-akun', 'AkunController');
     Route::post('data-akun/read', ['as' => 'data-akun.read', 'uses' => 'AkunController@read']);
-# Kelompok
+    # Kelompok
     Route::resource('data-kelompok', 'KelompokController');
     Route::post('data-kelompok/read', ['as' => 'data-kelompok.read', 'uses' => 'KelompokController@read']);
-# Jenis
+    # Jenis
     Route::resource('data-jenis', 'JenisController');
     Route::post('data-jenis/read', ['as' => 'data-jenis.read', 'uses' => 'JenisController@read']);
 });
@@ -114,10 +114,10 @@ Route::group(['before' => ['auth', 'backoffice'], 'namespace' => 'Akun'], functi
 // dengan is_admin = 100 yang artinya dia adalah pengelola sistem
 // ini juga bisa diakses oleh administrator dengan is_admin  = 1
 Route::group(['before' => ['auth', 'backoffice.admin'], 'namespace' => 'Akun'], function () {
-# Obyek
+    # Obyek
     Route::resource('data-obyek', 'ObyekController');
     Route::post('data-obyek/read', ['as' => 'data-obyek.read', 'uses' => 'ObyekController@read']);
-# Rincian Obyek
+    # Rincian Obyek
     Route::resource('data-rincian-obyek', 'RincianObyekController');
     Route::post('data-rincian-obyek/read', ['as' => 'data-rincian-obyek.read', 'uses' => 'RincianObyekController@read']);
 });
@@ -146,19 +146,19 @@ Route::group(['namespace' => 'MasterData', 'before' => ['auth', 'backoffice']], 
 
 # Namespace RKPDesa
 Route::group(['namespace' => 'RKPDesa', 'before' => ['auth', 'rkpdesa']], function () {
-# data RKPDesa
+    # data RKPDesa
     Route::resource('data-rkpdesa', 'RKPDesaController');
     Route::post('data-rkpdesa/read', ['as' => 'rkpdesa.read', 'uses' => 'RKPDesaController@read']);
     Route::post('rkpdesa-get-list/{program_id}', ['as' => 'rkpdesa.getlist', 'uses' => 'RKPDesaController@getRkpdesa']);
-# Indikator Masukan
+    # Indikator Masukan
     Route::resource('data-indikator-masukan', 'IndikatorMasukanController');
-# Indikator Keluaran
+    # Indikator Keluaran
     Route::resource('data-indikator-keluaran', 'IndikatorKeluaranController');
-# Indikator hasil
+    # Indikator hasil
     Route::resource('data-indikator-hasil', 'IndikatorHasilController');
-# Indikator Manfaat
+    # Indikator Manfaat
     Route::resource('data-indikator-manfaat', 'IndikatorManfaatController');
-#cetak
+    #cetak
     Route::get('cetak-rkpdesa-formulir-1', ['as' => 'cetak-rkpdesa-formulir-1.cetak', 'uses' => 'CetakRKPDesa@cetakFormulir1']);
     Route::get('cetak-rkpdesa-formulir-2', ['as' => 'cetak-rkpdesa-formulir-2.cetak', 'uses' => 'CetakRKPDesa@cetakFormulir2']);
     Route::get('cetak-rkpdesa-formulir-3', ['as' => 'cetak-rkpdesa-formulir-3.cetak', 'uses' => 'CetakRKPDesa@cetakFormulir3']);
@@ -177,44 +177,44 @@ Route::get('user-profile/{slug}', ['as' => 'user-profile.show', 'uses' => 'Pejab
 
 # Namespace ssh
 Route::group(['namespace' => 'SSH', 'before' => ['auth', 'backoffice']], function () {
-# kelas barang
+    # kelas barang
     Route::resource('data-kelas-barang', 'KelasBarangController');
     Route::post('data-kelas-barang/read', 'KelasBarangController@read');
-# kelompok barang
+    # kelompok barang
     Route::resource('data-kelompok-barang', 'KelompokBarangController');
     Route::post('data-kelompok-barang/read', 'KelompokBarangController@read');
-# jenis barang
+    # jenis barang
     Route::resource('data-jenis-barang', 'JenisBarangController');
     Route::post('data-jenis-barang/read', 'JenisBarangController@read');
-# obyek barang
+    # obyek barang
     Route::resource('data-obyek-barang', 'ObyekBarangController');
     Route::post('data-obyek-barang/read', 'ObyekBarangController@read');
-# rincian barang
+    # rincian barang
     Route::resource('data-rincian-obyek-barang', 'RincianObyekBarangController');
     Route::post('data-rincian-obyek-barang/read', 'RincianObyekBarangController@read');
 });
 
 Route::group(['namespace' => 'RPJMDesa', 'before' => ['auth', 'rpjmdesa']], function () {
-# Visi
+    # Visi
     Route::resource('data-rpjmdesa', 'RPJMDesaController');
     Route::post('data-rpjmdesa/read', 'RPJMDesaController@read');
-# misi
+    # misi
     Route::resource('data-misi', 'MisiController');
     Route::post('data-misi/read', ['as' => 'data-misi.read', 'uses' => 'MisiController@read']);
-# masalah
+    # masalah
     Route::resource('data-masalah', 'MasalahController');
     Route::post('data-masalah/read', ['as' => 'data-masalah.read', 'uses' => 'MasalahController@read']);
     Route::get('detil-masalah/{id}', ['as' => 'detil-masalah.show', 'uses' => 'MasalahController@detil']);
-# masalah -> potensi
+    # masalah -> potensi
     Route::resource('data-potensi', 'PotensiController');
     Route::post('data-potensi/read', ['as' => 'data-potensi.read', 'uses' => 'PotensiController@read']);
-# masalah -> pemetaan
+    # masalah -> pemetaan
     Route::resource('data-pemetaan', 'PemetaanController');
     Route::post('data-pemetaan/read', ['as' => 'data-pemetaan.read', 'uses' => 'PemetaanController@read']);
-# masalah -> prgoram
+    # masalah -> prgoram
     Route::resource('data-program', 'ProgramController');
     Route::post('data-program/read', ['as' => 'data-program.read', 'uses' => 'ProgramController@read']);
-# cetak dokumen
+    # cetak dokumen
     Route::get('cetak-rpjmdesa-formulir-1', ['as' => 'cetak-rpjmdesa-formulir-1.cetak', 'uses' => 'ProgramController@cetakFormulir1']);
     Route::get('cetak-rpjmdesa-formulir-2', ['as' => 'cetak-rpjmdesa-formulir-2.cetak', 'uses' => 'ProgramController@cetakFormulir2']);
     Route::get('cetak-rpjmdesa-formulir-3', ['as' => 'cetak-rpjmdesa-formulir-3.cetak', 'uses' => 'ProgramController@cetakFormulir3']);
@@ -242,7 +242,7 @@ Route::group(['namespace' => 'Transaksi', 'before' => ['auth', 'bendahara']], fu
 
     // posting pendapatan
     Route::post('pendapatan-posting', 'TransaksiPendapatanController@posting');
-#belanja
+    #belanja
     Route::resource('data-tr-belanja', 'BelanjaController');
     Route::post('data-tr-belanja/read', 'BelanjaController@read');
 
@@ -254,7 +254,7 @@ Route::group(['namespace' => 'Transaksi', 'before' => ['auth', 'bendahara']], fu
     Route::post('laporan-bku-belanja/read', 'LaporanBkuBelanjaController@read');
     Route::get('cetak-bku-belanja', 'LaporanBkuBelanjaController@cetakBKU');
 
-#pembiayaan
+    #pembiayaan
     Route::resource('data-tr-pembiayaan', 'TransaksiPembiayaanController');
     Route::post('data-tr-pendapatan/read', 'TransaksiPendapatanController@read');
 });
@@ -279,7 +279,7 @@ Route::post('ajax-desa/{kode_kec}', ['as' => 'desa.ajax', 'uses' => 'AjaxControl
 
 # Namesapce Ajax
 Route::group(['namespace' => 'Ajax', 'before' => 'auth'], function () {
-#APBDesa
+    #APBDesa
     Route::get('ajax-data-akun', ['as' => 'ajax.data.akun', 'uses' => 'AjaxController@getAkun']);
     Route::post('ajax-data-kelompok', ['as' => 'ajax.data.kelompok', 'uses' => 'AjaxController@getKelompok']);
     Route::post('ajax-data-jenis', ['as' => 'ajax.data.jenis', 'uses' => 'AjaxController@getJenis']);
@@ -307,12 +307,12 @@ Route::group(['namespace' => 'Ajax', 'before' => 'auth'], function () {
     Route::get('ajax-pendapatan', ['as' => 'ajax.list.pendapatan', 'uses' => 'AjaxPendapatan@getPendapatan']);
     #sumberdaba
     Route::get('ajax-sumber-dana', ['as' => 'sumber.ajax', 'uses' => 'AjaxSumberDana@getList']);
-#ssh
+    #ssh
     Route::get('ajax-list-kelas-barang', ['as' => 'ajax.list.kelas.barang', 'uses' => 'AjaxSSHController@getListKelasBarang']);
     Route::post('ajax-list-kelompok-barang', ['as' => 'ajax.list.kelompok.barang', 'uses' => 'AjaxSSHController@getListKelompokBarang']);
     Route::post('ajax-list-jenis-barang', ['as' => 'ajax.list.jenis.barang', 'uses' => 'AjaxSSHController@getListJenisBarang']);
     Route::post('ajax-list-obyek-barang', ['as' => 'ajax.list.obyek.barang', 'uses' => 'AjaxSSHController@getListObyekBarang']);
-#autocomplete
+    #autocomplete
     Route::get('autocomplete-belanja', ['as' => 'autocomplete-belanja', 'uses' => 'AjaxPendapatan@getBelanja']);
     Route::get('autocomplete-ssh', ['as' => 'autocomplete.ssh', 'uses' => 'AjaxSSHController@autocomplete']);
 });
@@ -351,13 +351,13 @@ Route::group(['namespace' => 'RKA', 'before' => ['auth', 'rka']], function () {
     Route::get('rka-formulir-2', 'RKAController@formulir2');
     Route::get('rka-formulir-3', 'RKAController@formulir3');
     Route::get('rka-formulir-4', 'RKAController@formulir4');
-#set dpa
+    #set dpa
     Route::get('data-rka-desa/{id}/{cmd}', 'RKAController@setDPA');
-#unset rka
+    #unset rka
     Route::get('unset-rka/{id}/{cmd}', 'RKAController@unsetRKA');
-#unset dpa
+    #unset dpa
     Route::get('unset-dpa/{id}/{cmd}', 'RKAController@unsetDPA');
-#set dpa
+    #set dpa
     Route::get('data-rka-desa/{id}/{cmd}', 'RKAController@setDPA');
 });
 
@@ -373,7 +373,7 @@ Route::group(['namespace' => 'DPA', 'before' => ['auth', 'dpa']], function () {
 
 # Namespace Perdes
 Route::group(['before' => ['auth', 'auth.post', 'perdes'], 'namespace' => 'Perdes'], function () {
-##Perdes RPJMDesa
+    ##Perdes RPJMDesa
     #Judul
     Route::resource('data-perdes-judul', 'JudulController');
     Route::post('data-perdes-judul/read', ['as' => 'data.perdes.judul.read', 'uses' => 'JudulController@read']);
@@ -403,7 +403,7 @@ Route::group(['before' => ['auth', 'auth.post', 'perdes'], 'namespace' => 'Perde
     Route::resource('data-perdes-ketentuan-penutup', 'KetentuanPenutupController');
     Route::post('data-perdes-ketentuan-penutup/read', ['as' => 'data.perdes.ketentuan.penutup.read', 'uses' => 'KetentuanPenutupController@read']);
 
-##Perdes APBDesa
+    ##Perdes APBDesa
     #Judul
     Route::resource('data-perdes-apbdesa', 'JudulController');
 
@@ -448,9 +448,9 @@ Route::group(['before' => ['auth', 'perangkat'], 'namespace' => 'SSH'], function
 
 # Namespace BackOffice
 Route::group(['namespace' => 'BackOffice', 'before' => ['auth', 'backoffice']], function () {
-// Menu yang hanya bisa diakses oleh backoffice, fitur yang dimiliki bisa untuk
-// aktifkan/nonaktifkan oraganisasi atau user, memantau setiap transaksi yang
-// dilakukan oleh user, sebagai IT/Sistim support sistem/pnegelola sistem
+    // Menu yang hanya bisa diakses oleh backoffice, fitur yang dimiliki bisa untuk
+    // aktifkan/nonaktifkan oraganisasi atau user, memantau setiap transaksi yang
+    // dilakukan oleh user, sebagai IT/Sistim support sistem/pnegelola sistem
 
     // menampilkan list organisasi
     Route::get('backoffice/data-list-organisasi', 'OrganisasiListController@index');
@@ -466,15 +466,17 @@ Route::group(['namespace' => 'BackOffice', 'before' => ['auth', 'backoffice']], 
 });
 
 
-
 Route::get('xls-importer', function () {
     return $exel = Excel::load('xls/data.xlsx')->toArray();
 
 })->before('auth');
 
-Route::get('upload/create', function () {
-    return View::make('upload');
+Route::get('session-auth', function () {
+    //        return View::make('upload');
+
+    return Auth::getUser()->organisasi->id;
 })->before('auth');
+
 
 // usage inside a laravel route
 Route::post('/upload/image', function () {
