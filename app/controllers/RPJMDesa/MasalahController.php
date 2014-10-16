@@ -12,6 +12,9 @@ use RKA\RKAController;
 use Simdes\Repositories\Organisasi\OrganisasiRepositoryInterface;
 use Simdes\Repositories\Pejabat\PejabatDesaRepositoryInterface;
 use Simdes\Repositories\RPJMDesa\MasalahRepositoryInterface;
+use Simdes\Repositories\RPJMDesa\PemetaanRepositoryInterface;
+use Simdes\Repositories\RPJMDesa\PotensiRepositoryInterface;
+use Simdes\Repositories\RPJMDesa\ProgramRepositoyInterface;
 use Simdes\Repositories\RPJMDesa\RPJMDesaRepositoryInterface;
 use Simdes\Repositories\User\UserRepositoryInterface;
 
@@ -31,6 +34,14 @@ class MasalahController extends \BaseController
      * @var \Simdes\Repositories\RPJMDesa\MasalahRepositoryInterface
      */
     protected $masalah;
+
+    protected $potensi;
+
+    protected $pemetaan;
+
+    protected $prograam;
+
+
     /**
      * @var \Simdes\Repositories\RPJMDesa\RPJMDesaRepositoryInterface
      */
@@ -54,7 +65,10 @@ class MasalahController extends \BaseController
         UserRepositoryInterface $auth,
         OrganisasiRepositoryInterface $organisasi,
         PejabatDesaRepositoryInterface $pejabat,
-        RKAController $rka
+        RKAController $rka,
+        PotensiRepositoryInterface $potensi,
+        ProgramRepositoyInterface $program,
+        PemetaanRepositoryInterface $pemetaan
 
     )
     {
@@ -66,6 +80,9 @@ class MasalahController extends \BaseController
         $this->pejabat = $pejabat;
         $this->rka = $rka;
         $this->auth = $auth;
+        $this->potensi = $potensi;
+        $this->pemetaan = $pemetaan;
+        $this->prograam = $program;
     }
 
     /**
@@ -89,7 +106,7 @@ class MasalahController extends \BaseController
         if (is_null($data)) {
             return $this->redirectURLTo('data-rpjmdesa');
         } else {
-            $this->view('rpjmdesa.data-masalah', compact('data','result'));
+            $this->view('rpjmdesa.data-masalah', compact('data', 'result'));
         }
     }
 
@@ -105,9 +122,11 @@ class MasalahController extends \BaseController
         if ($data == null) {
             return $this->redirectURLTo('data-rpjmdesa');
         } else {
-            $data_potensi = $this->masalah->findPotensi($id);
-            $data_pemetaan = $this->masalah->findPemetaan($id);
-            $data_program = $this->masalah->findProgram($id);
+
+            $data_potensi = $this->potensi->findByMasalahId($id);
+            $data_pemetaan = $data->pemetaan;
+            $data_program = $this->prograam->findByMasalahId($id);
+
             $no_potensi = 1;
 
             $this->view('rpjmdesa.detil-masalah', [
@@ -127,6 +146,7 @@ class MasalahController extends \BaseController
     {
         $term = $this->input('term');
         $rpjmdesa_id = $this->input('rpjmdesa_id');
+
         return $this->masalah->findAll($term, $rpjmdesa_id, $this->auth->getOrganisasiId());
     }
 
@@ -139,6 +159,7 @@ class MasalahController extends \BaseController
 
         if (!$form->isValid()) {
             $message = $form->getErrors();
+
             return [
                 'Status'     => 'Validation',
                 'validation' => [
@@ -182,6 +203,7 @@ class MasalahController extends \BaseController
 
         if (!$form->isValid()) {
             $message = $form->getErrors();
+
             return [
                 'Status'     => 'Validation',
                 'validation' => [

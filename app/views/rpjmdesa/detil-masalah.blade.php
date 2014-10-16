@@ -55,7 +55,6 @@
                         <tr>
                             <td class="active">Pemetaan</td>
                             <td>
-                                @foreach ($data_pemetaan as $dt)
                                 <table class="table table-hover table-bordered">
                                     <tr>
                                         <th class="active">
@@ -70,7 +69,7 @@
                                             Dirasakan oleh orang banyak
                                         </td>
                                         <td>
-                                            {{ $dt->pemetaan_1}}
+                                            {{ $data_pemetaan->pemetaan_1}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -78,7 +77,7 @@
                                             Kondisinya sangat parah
                                         </td>
                                         <td>
-                                            {{ $dt->pemetaan_2}}
+                                            {{ $data_pemetaan->pemetaan_2}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -86,7 +85,7 @@
                                             Menghambat perolehan pendapatan
                                         </td>
                                         <td>
-                                            {{ $dt->pemetaan_3}}
+                                            {{ $data_pemetaan->pemetaan_3}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -94,7 +93,7 @@
                                             Sering terjadi masalah
                                         </td>
                                         <td>
-                                            {{ $dt->pemetaan_4}}
+                                            {{ $data_pemetaan->pemetaan_4}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -102,7 +101,7 @@
                                             Kritria lain pendukung masalah
                                         </td>
                                         <td>
-                                            {{ $dt->pemetaan_5}}
+                                            {{ $data_pemetaan->pemetaan_5}}
                                         </td>
                                     </tr>
                                     <tr>
@@ -110,11 +109,10 @@
                                             Jumlah
                                         </td>
                                         <td>
-                                            {{ $dt->jumlah}}
+                                            {{ $data_pemetaan->jumlah}}
                                         </td>
                                     </tr>
                                 </table>
-                                @endforeach
                             </td>
                         </tr>
                         <tr>

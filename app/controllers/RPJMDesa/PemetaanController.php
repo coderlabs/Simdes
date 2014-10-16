@@ -26,7 +26,7 @@ class PemetaanController extends \BaseController
 
     /**
      * @param PemetaanRepositoryInterface $pemetaan
-     * @param UserRepositoryInterface $auth
+     * @param UserRepositoryInterface     $auth
      */
     function __construct(
         PemetaanRepositoryInterface $pemetaan,
@@ -76,6 +76,7 @@ class PemetaanController extends \BaseController
 
         if (!$form->isValid()) {
             $message = $form->getErrors();
+
             return [
                 'Status'     => 'Validation',
                 'validation' => [

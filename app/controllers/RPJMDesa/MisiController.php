@@ -29,9 +29,9 @@ class MisiController extends \BaseController
     private $RPJMDesa;
 
     /**
-     * @param MisiRepositoryInterface $misi
+     * @param MisiRepositoryInterface     $misi
      * @param RPJMDesaRepositoryInterface $RPJMDesa
-     * @param UserRepositoryInterface $auth
+     * @param UserRepositoryInterface     $auth
      */
     function __construct(
         MisiRepositoryInterface $misi,
@@ -78,6 +78,7 @@ class MisiController extends \BaseController
     {
         $term = $this->input('term');
         $rpjmdesa_id = $this->input('rpjmdesa_id');
+
         return $this->misi->findAll($term, $rpjmdesa_id, $this->auth->getOrganisasiId());
     }
 
@@ -133,6 +134,7 @@ class MisiController extends \BaseController
 
         if (!$form->isValid()) {
             $message = $form->getErrors();
+
             return [
                 'Status'     => 'Validation',
                 'validation' => [
