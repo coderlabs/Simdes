@@ -43,7 +43,7 @@ class RPJMDesaRepository extends AbstractRepository implements RPJMDesaRepositor
             ->orderBy('visi_id', 'desc')
             ->where('user_id', '=', $user_id)
             ->where('organisasi_id', '=', $organisasi_id)
-            ->remember(10)
+            ->remember(2)
             ->paginate(10);
 
         return $RPJMDesa;
@@ -132,6 +132,7 @@ class RPJMDesaRepository extends AbstractRepository implements RPJMDesaRepositor
         return $this->model
             ->where('id', '=', $id)
             ->where('organisasi_id', '=', $organisasi_id)
+            ->remember(2)
             ->first();
     }
 

@@ -55,7 +55,7 @@ class MasalahRepository extends AbstractRepository implements MasalahRepositoryI
             ->where('rpjmdesa_id', '=', $rpjmdesa_id)
             ->where('organisasi_id', '=', $organisasi_id)
             ->orderBy('sekor_pemetaan', 'desc')
-            ->remember(10)
+            ->remember(2)
             ->paginate(10);
     }
 
@@ -123,6 +123,10 @@ class MasalahRepository extends AbstractRepository implements MasalahRepositoryI
         return $masalah;
     }
 
+    /**
+     * @param $pemetaan_id
+     * @return mixed
+     */
     public function findByIdPemetaan($pemetaan_id)
     {
         return $this->model
@@ -220,6 +224,10 @@ class MasalahRepository extends AbstractRepository implements MasalahRepositoryI
         return $this->model->where('id', '=', $id)->where('organisasi_id', '=', $organisasi_id)->first();
     }
 
+    /**
+     * @param $organisasi_id
+     * @return mixed
+     */
     public function cetakFormulir5($organisasi_id)
     {
         return $this->model->where('organisasi_id', '=', $organisasi_id)->with(['pemetaan'])->get();

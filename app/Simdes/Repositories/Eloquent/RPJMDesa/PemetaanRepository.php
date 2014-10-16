@@ -132,6 +132,7 @@ class PemetaanRepository extends AbstractRepository implements PemetaanRepositor
         return $this->model
             ->where('id', '=', $id)
             ->where('organisasi_id', '=', $organisasi_id)
+            ->remember(2)
             ->first();
     }
 

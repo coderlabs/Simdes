@@ -29,6 +29,11 @@ interface ProgramRepositoyInterface
      */
     public function findAll($term, $masalah_id, $organisasi_id);
 
+    /**
+     * @param $term
+     * @param $organisasi_id
+     * @return mixed
+     */
     public function getList($term, $organisasi_id);
 
     /**
@@ -45,12 +50,22 @@ interface ProgramRepositoyInterface
      */
     public function findById($id);
 
-    public function findByOrganisasi_id($id,$organisasi_id);
+    /**
+     * @param $masalah_id
+     * @return mixed
+     */
+    public function findByMasalahId($masalah_id);
 
+    /**
+     * @param $id
+     * @param $organisasi_id
+     * @return mixed
+     */
+    public function findByOrganisasi_id($id, $organisasi_id);
 
     /**
      * @param Program $program
-     * @param array $data
+     * @param array   $data
      *
      * @return mixed
      */
@@ -87,7 +102,7 @@ interface ProgramRepositoyInterface
      * @return mixed
      */
     public function getProgram($program_id);
-    
+
     /**
      * Menampilkan data prgoram yang telah diRPJMDesa kan
      * akan ditampilkan di RKPDesa outpurnya ada tiga

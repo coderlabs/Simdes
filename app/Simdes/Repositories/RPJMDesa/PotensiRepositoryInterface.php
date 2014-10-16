@@ -17,7 +17,8 @@ use Simdes\Models\RPJMDesa\Potensi;
  *
  * @package Simdes\Repositories\RPJMDesa
  */
-interface PotensiRepositoryInterface {
+interface PotensiRepositoryInterface
+{
 
     /**
      * @param $term
@@ -26,7 +27,7 @@ interface PotensiRepositoryInterface {
      *
      * @return mixed
      */
-    public function findAll($term, $masalah_id,$organisasi_id);
+    public function findAll($term, $masalah_id, $organisasi_id);
 
     /**
      * @param array $data
@@ -49,7 +50,7 @@ interface PotensiRepositoryInterface {
      *
      * @return mixed
      */
-    public function update(Potensi $potensi,array $data);
+    public function update(Potensi $potensi, array $data);
 
     /**
      * @param $id
@@ -74,5 +75,11 @@ interface PotensiRepositoryInterface {
      *
      * @return mixed
      */
-    public function findByFilter($id,$organisasi_id);
+    public function findByFilter($id, $organisasi_id);
+
+    /**
+     * @param $masalah_id
+     * @return mixed
+     */
+    public function findByMasalahId($masalah_id);
 } 

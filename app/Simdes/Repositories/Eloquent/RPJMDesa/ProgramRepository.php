@@ -56,17 +56,22 @@ class ProgramRepository extends AbstractRepository implements ProgramRepositoyIn
             ->where('masalah_id', '=', $masalah_id)
             ->where('organisasi_id', '=', $organisasi_id)
             ->with('program')
-            ->remember(10)
+            ->remember(2)
             ->paginate(10);
     }
 
+    /**
+     * @param $term
+     * @param $organisasi_id
+     * @return mixed
+     */
     public function getList($term, $organisasi_id)
     {
         return $this->model
             ->FullTextSearch($term)
             ->where('organisasi_id', '=', $organisasi_id)
             ->with('program')
-            ->remember(10)
+            ->remember(2)
             ->paginate(10);
     }
 
@@ -167,7 +172,7 @@ class ProgramRepository extends AbstractRepository implements ProgramRepositoyIn
     {
         return $this->model
             ->where('organisasi_id', '=', $organisasi_id)
-            ->remember(10)
+            ->remember(2)
             ->get([
                 'rpjmdesa_id',
                 'program_id as id',
@@ -241,6 +246,23 @@ class ProgramRepository extends AbstractRepository implements ProgramRepositoyIn
         return $this->model->find($id);
     }
 
+    /**
+     * @param $masalah_id
+     * @return mixed
+     */
+    public function findByMasalahId($masalah_id)
+    {
+        return $this->model
+            ->where('masalah_id', '=', $masalah_id)
+            ->remember(2)
+            ->get();
+    }
+
+    /**
+     * @param $id
+     * @param $organisasi_id
+     * @return mixed
+     */
     public function findByOrganisasi_id($id, $organisasi_id)
     {
         return $this->model

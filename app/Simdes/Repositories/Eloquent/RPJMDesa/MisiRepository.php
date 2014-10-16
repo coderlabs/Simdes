@@ -47,7 +47,7 @@ class MisiRepository extends AbstractRepository implements MisiRepositoryInterfa
             ->FullTextSearch($term)
             ->where('rpjmdesa_id', '=', $rpjmdesa_id)
             ->where('organisasi_id', '=', $organisasi_id)
-            ->remember(10)
+            ->remember(2)
             ->paginate(10);
     }
 

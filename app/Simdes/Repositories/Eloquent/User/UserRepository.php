@@ -17,6 +17,7 @@ use Simdes\Models\User\User;
 use Simdes\Repositories\Eloquent\AbstractRepository;
 use Simdes\Repositories\Organisasi\OrganisasiRepositoryInterface;
 use Simdes\Repositories\User\UserRepositoryInterface;
+use Simdes\Services\Cache\CacheInterface;
 use Simdes\Services\Forms\User\CreateNewUserForm;
 use Simdes\Services\Forms\User\CredentialsForm;
 use Simdes\Services\Forms\User\EditUserForm;
@@ -37,24 +38,18 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     /**
      * @var \Simdes\Repositories\Organisasi\OrganisasiRepositoryInterface
      */
-    private $organisasi;
+    protected $organisasi;
 
     /**
      * @var \Illuminate\Auth\AuthManager
      */
-    private $auth;
+    protected $auth;
 
     /**
      * @var Dispatcher
      */
-    private $event;
+    protected $event;
 
-    /**
-     * @param User                          $user
-     * @param OrganisasiRepositoryInterface $organisasi
-     * @param AuthManager                   $auth
-     * @param Dispatcher                    $event
-     */
     public function __construct(
         User $user,
         OrganisasiRepositoryInterface $organisasi,
@@ -340,12 +335,17 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
         return $this->auth->user()->id;
     }
 
-    /**
-     * @return mixed
-     */
     public function getOrganisasiId()
     {
-        return $this->auth->user()->organisasi_id;
+        $organisasi_id = $this->auth->user()->organisasi_id;
+
+        \Session::put('organisasi_id', $organisasi_id,10);
+
+        if (\Session::has('organisasi_id')) {
+            return \Session::get('organisasi_id');
+        }
+
+        return $organisasi_id;
     }
 
     /**
@@ -466,7 +466,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             ->where('id', '=', $user_id)
             ->where('organisasi_id', '=', $organisasi_id)
             ->with('organisasi')
-            ->remember(10)
+            ->remember(2)
             ->first();
     }
 

@@ -47,7 +47,7 @@ class PotensiRepository extends AbstractRepository implements PotensiRepositoryI
             ->FullTextSearch($term)
             ->where('masalah_id', '=', $masalah_id)
             ->where('organisasi_id', '=', $organisasi_id)
-            ->remember(10)
+            ->remember(2)
             ->paginate(10);
     }
 
@@ -76,7 +76,7 @@ class PotensiRepository extends AbstractRepository implements PotensiRepositoryI
      * Update data potensi
      *
      * @param Potensi $potensi
-     * @param array $data
+     * @param array   $data
      *
      * @return Potensi
      */
@@ -144,6 +144,21 @@ class PotensiRepository extends AbstractRepository implements PotensiRepositoryI
      */
     public function findByFilter($id, $organisasi_id)
     {
-        return $this->model->where('id', '=', $id)->where('organisasi_id', '=', $organisasi_id)->first();
+        return $this->model
+            ->where('id', '=', $id)
+            ->where('organisasi_id', '=', $organisasi_id)
+            ->first();
+    }
+
+    /**
+     * @param $masalah_id
+     * @return mixed
+     */
+    public function findByMasalahId($masalah_id)
+    {
+        return $this->model
+            ->where('masalah_id', '=', $masalah_id)
+            ->remember(2)
+            ->get();
     }
 }
