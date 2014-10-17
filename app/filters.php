@@ -33,9 +33,8 @@ App::after(function ($request, $response) {
 
 Route::filter('auth', function () {
     if (!Auth::check()) {
-        // cek apakah data dikirim dengan ajax
-        // kembali response untuk diproses
-        // redirect login via javascript
+        // cek apakah data dikirim dengan ajax kembali response
+        // untuk diproses redirect login via javascript
 
         if (Request::ajax()) {
             return [
