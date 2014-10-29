@@ -97,7 +97,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
             // order by id user terakhir mendaftar
             ->orderBy('id', 'desc')
             // save cache
-            //            ->remember(10)
+            ->remember(10)
             ->paginate(10, ['id', 'name', 'email', 'is_admin', 'organisasi_id', 'is_demo', 'is_active']);
     }
 
@@ -339,7 +339,7 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     {
         $organisasi_id = $this->auth->user()->organisasi_id;
 
-        \Session::put('organisasi_id', $organisasi_id,10);
+        \Session::put('organisasi_id', $organisasi_id, 10);
 
         if (\Session::has('organisasi_id')) {
             return \Session::get('organisasi_id');
