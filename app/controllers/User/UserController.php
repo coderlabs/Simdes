@@ -3,7 +3,6 @@ namespace User;
 
 use Illuminate\Events\Dispatcher;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Redirect;
 use Simdes\Repositories\User\UserRepositoryInterface;
 
